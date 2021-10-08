@@ -1,11 +1,28 @@
 from typing import Callable, Dict
 
+from .Exceptions import KeysDoNotMatch
+
 ClassifyerStrategy = Callable[[list[str]], Dict]
 
 
-def value_as_list_strategy(range_of_list: int = 5) -> ClassifyerStrategy:
+def dict_with_value_as_list(range_of_list: int = 5) -> ClassifyerStrategy:
+    """
+    Args:
+        range_of_list (int, optional): Lists size can be modified like this. Defaults to 5.
+    """
 
     def splitted_value_as_list(dataset: list[str]) -> Dict[str, list[str]]:
+        """
+        splitted_value_as_list List is divided into the defined size!
+
+        Args:
+            dataset (list[str]): Data set contains all data key and associated data
+
+        Returns:
+            Dict[str, list[str]]:  Daten werden in einem dict mit einer liste als value 
+        """
+        if len(dataset) % range_of_list:
+            raise KeysDoNotMatch(range_of_list, "The specified length of the list does not match the dataset!")
         result_dict: Dict = dict()
         for count, data in enumerate(dataset, start=0):
             if count % range_of_list == 0:
@@ -15,9 +32,17 @@ def value_as_list_strategy(range_of_list: int = 5) -> ClassifyerStrategy:
     return splitted_value_as_list
 
 
-def zip_data_strategy(dict_keys: list[str]) -> ClassifyerStrategy:
+def dict_zip_data(dict_keys: list[str] = []) -> ClassifyerStrategy:
+    """
+    Args:
+        dict_keys (list[str]): List of key names!
+    """
 
     def zip_data_with_keys(dataset: list[str]) -> Dict[str, str]:
+        if len(dataset) != len(dict_keys):
+            raise KeysDoNotMatch(
+                ",".join(dict_keys), "The length of the keys does not match the length of the entered data"
+                )
         return dict(zip(dict_keys, dataset))
 
     return zip_data_with_keys
