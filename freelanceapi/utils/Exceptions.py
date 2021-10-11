@@ -30,3 +30,21 @@ class KeysDoNotMatch(Exception):
 
     def __str__(self):
         return f'Value:{self.values}  -> Msg:{self.message}'
+
+
+class WrongeKey(Exception):
+    """
+    WrongeKey Key Word of the String ist Wronge
+
+    Args:
+        Exception ([type]): Main Class for exceptions
+    """
+
+    def __init__(self, key_word: str, current_keyword: str, message: str = ""):
+        self.key_word = key_word
+        self.current_keyword = current_keyword
+        self.message = message
+        super().__init__(self.message)
+
+    def __str__(self):
+        return f'Expectet: {self.key_word} Passed: {self.current_keyword} Msg:{self.message}'
