@@ -8,7 +8,7 @@ def exmaple_empty_row():
 
 @pytest.fixture
 def example_msrrecord_row():
-    return "[MSR:RECORD];1;Q1111;BST_LIB_MSR;M_BIN;kurztext;Langtext;;128;1;;;;2"
+    return "[MSR:RECORD];1;M1234;BST_LIB_MSR;M_BIN;kurztext;Langtext;;128;1;;;;2"
 
 
 @pytest.fixture

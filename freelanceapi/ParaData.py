@@ -1,11 +1,11 @@
 from typing import Dict
 from collections import defaultdict
 
-from KeyWord import KeyWord
-from utils.Classify import Classify, dict_with_value_as_list
-from utils.Modify import Modify, modify_dict_with_list_of_values
-from utils.Create import Create, create_string_from_dict_with_list
-from utils.Exceptions import WrongeKey
+from .KeyWord import KeyWord
+from .utils.Classify import Classify, dict_with_value_as_list
+from .utils.Modify import Modify, modify_dict_with_list_of_values
+from .utils.Create import Create, create_string_from_dict_with_list
+from .utils.Exceptions import WrongeKey, WrongeData
 
 
 class ParaData(KeyWord):
@@ -14,8 +14,10 @@ class ParaData(KeyWord):
     _length: str = ""
     __expected_key = "[PARA:PARADATA]"
 
-    def evaluate_list(self, row_of_data: str) -> Dict:
-        self._key_word, self._length, *parameter = row_of_data.split(";")
+    def evaluate_list(self, list_of_data: str) -> Dict:
+        if not list_of_data:
+            raise WrongeData(" ".join(list_of_data), "Dataset is incorrect!")
+        self._key_word, self._length, *parameter = list_of_data
         if self._key_word != self.__expected_key:
             raise WrongeKey(self.__expected_key, self._key_word, "The key contained in the string does not match!")
         classify = Classify(parameter)

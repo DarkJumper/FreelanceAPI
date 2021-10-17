@@ -1,11 +1,11 @@
 from typing import Dict
 from collections import defaultdict
 
-from KeyWord import KeyWord
-from utils.Classify import Classify, dict_zip_data
-from utils.Modify import Modify, modify_dict_value
-from utils.Create import Create, create_string_from_dict_with_string
-from utils.Exceptions import WrongeKey
+from .KeyWord import KeyWord
+from .utils.Classify import Classify, dict_zip_data
+from .utils.Modify import Modify, modify_dict_value
+from .utils.Create import Create, create_string_from_dict_with_string
+from .utils.Exceptions import WrongeKey, WrongeData
 
 
 class MsrRecord(KeyWord):
@@ -14,8 +14,10 @@ class MsrRecord(KeyWord):
     _length: str = ""
     __expected_key = "[MSR:RECORD]"
 
-    def evaluate_list(self, row_of_data: str) -> Dict:
-        self._key_word, self._length, *parameter = row_of_data.split(";")
+    def evaluate_list(self, list_of_data: list) -> Dict:
+        if not list_of_data:
+            raise WrongeData(" ".join(list_of_data), "Dataset is incorrect!")
+        self._key_word, self._length, *parameter = list_of_data
         if self._key_word != self.__expected_key:
             raise WrongeKey(self.__expected_key, self._key_word, "The key contained in the string does not match!")
         keys = ["MN", "LIB", "BT", "KT", "LT", "?0", "PA", "ST", "?1", "?2", "?3", 'END']

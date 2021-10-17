@@ -48,3 +48,20 @@ class WrongeKey(Exception):
 
     def __str__(self):
         return f'Expectet: {self.key_word} Passed: {self.current_keyword} Msg:{self.message}'
+
+
+class WrongeData(Exception):
+    """
+    WrongeData Data is not Correct
+
+    Args:
+        Exception ([type]): Main Class for exceptions
+    """
+
+    def __init__(self, data: str, message: str = ""):
+        self.data = data
+        self.message = message
+        super().__init__(self.message)
+
+    def __str__(self):
+        return f'Passed Data: {self.data} Msg:{self.message}'
