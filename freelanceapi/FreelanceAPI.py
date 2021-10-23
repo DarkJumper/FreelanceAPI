@@ -3,14 +3,14 @@ from .ParaData import ParaData
 from .MsrRecord import MsrRecord
 from .EamRecord import EamRecord
 from .UidAcc import UidAcc
-from collections import defaultdict
-#from Gwy import Gwy
+from .PbvObjpath import PbvObjpath
 
 FACTORIES = {
     "[PARA:PARADATA]": ParaData(),
     "[MSR:RECORD]": MsrRecord(),
     "[UID:ACCMSR]": UidAcc(),
-    "[EAM:RECORD]": EamRecord()
+    "[EAM:RECORD]": EamRecord(),
+    "[PBV:OBJPATH]": PbvObjpath()
     }
 
 

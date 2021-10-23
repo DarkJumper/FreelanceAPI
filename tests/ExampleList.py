@@ -26,3 +26,8 @@ def example_uidacc_list():
 @pytest.fixture
 def example_eamrecord_list():
     return "[EAM:RECORD];1;54321_IN1;0;INT;Variabel;1;0".split(";")
+
+
+@pytest.fixture
+def example_pbvobjpath_list():
+    return "[PBV:OBJPATH];1;FBSLBLT;Standart".split(";")

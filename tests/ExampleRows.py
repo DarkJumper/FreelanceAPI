@@ -24,3 +24,8 @@ def example_uidacc_row():
 @pytest.fixture
 def example_eamrecord_row():
     return "[EAM:RECORD];1;54321_IN1;0;INT;Variabel;1;0"
+
+
+@pytest.fixture
+def example_pbvobjpath_row():
+    return "[PBV:OBJPATH];1;FBSLBLT;Standart"
