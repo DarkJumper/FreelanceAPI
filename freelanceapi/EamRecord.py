@@ -30,7 +30,7 @@ class EamRecord(KeyWord):
 
     @property
     def get_dict(self) -> Dict[str, list[str]]:
-        return self.classifyed_data
+        return dict(self.classifyed_data)
 
     @property
     def get_string(self) -> str:
