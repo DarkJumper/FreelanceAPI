@@ -21,3 +21,8 @@ def example_paradata_list():
 @pytest.fixture
 def example_uidacc_list():
     return "[UID:ACCMSR];5;USER1;3;USER2;3;GUEST;1;USER3;1;USER4;1".split(";")
+
+
+@pytest.fixture
+def example_eamrecord_list():
+    return "[EAM:RECORD];1;54321_IN1;0;INT;Variabel;1;0".split(";")

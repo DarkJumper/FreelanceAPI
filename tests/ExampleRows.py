@@ -19,3 +19,8 @@ def example_paradata_row():
 @pytest.fixture
 def example_uidacc_row():
     return "[UID:ACCMSR];5;USER1;3;USER2;3;GUEST;1;USER3;1;USER4;1"
+
+
+@pytest.fixture
+def example_eamrecord_row():
+    return "[EAM:RECORD];1;54321_IN1;0;INT;Variabel;1;0"

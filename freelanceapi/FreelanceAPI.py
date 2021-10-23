@@ -1,11 +1,17 @@
 from .KeyWord import KeyWord
 from .ParaData import ParaData
 from .MsrRecord import MsrRecord
+from .EamRecord import EamRecord
 from .UidAcc import UidAcc
 from collections import defaultdict
 #from Gwy import Gwy
 
-FACTORIES = {"[PARA:PARADATA]": ParaData(), "[MSR:RECORD]": MsrRecord(), "[UID:ACCMSR]": UidAcc()}
+FACTORIES = {
+    "[PARA:PARADATA]": ParaData(),
+    "[MSR:RECORD]": MsrRecord(),
+    "[UID:ACCMSR]": UidAcc(),
+    "[EAM:RECORD]": EamRecord()
+    }
 
 
 def exported_row(listed_data: str, sep: str = ";") -> KeyWord:
