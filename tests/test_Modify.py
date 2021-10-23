@@ -1,8 +1,8 @@
 import pytest
 
-from freelanceapi.utils.Modify import Modify, modify_dict_with_list_of_values, modify_dict_value
+from freelanceapi.utils.Modify import Modify, modify_dict_with_list_of_values, modify_dict_value, modify_dict_with_list
 from freelanceapi.utils.Exceptions import KeyNotFoundError
-from .ClassifyedExample import example_classifyed_paradata, example_classifyed_msrrecord, example_empty_data
+from .ClassifyedExample import example_classifyed_paradata, example_classifyed_msrrecord, example_empty_data, example_classifyed_uidacc
 
 
 def test_KeyNotFoundError_modify_dict_with_list_of_values(example_empty_data):
@@ -69,3 +69,21 @@ def test_modify_dict_value(example_classifyed_msrrecord):
         'END': '2'
         }
     assert mod_list.modify(modify_dict_value())["MN"] == "TEST"
+
+
+def test_KeyNotFoundError_modify_dict_with_list(example_empty_data):
+    with pytest.raises(KeyNotFoundError):
+        mod_list = Modify(example_empty_data, {"USER": "2"})
+        assert mod_list.modify(modify_dict_with_list_of_values()) == {}
+
+
+def test_modify_dict_with_list(example_classifyed_uidacc):
+    mod_list = Modify(example_classifyed_uidacc, {"USER1": "1"})
+    assert mod_list.modify(modify_dict_with_list()) == {
+        'USER1': ['USER1', '1'],
+        'USER2': ['USER2', '3'],
+        'GUEST': ['GUEST', '1'],
+        'USER3': ['USER3', '1'],
+        'USER4': ['USER4', '1']
+        }
+    assert mod_list.modify(modify_dict_with_list())["USER1"] == ["USER1", "1"]

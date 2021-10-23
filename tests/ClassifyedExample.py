@@ -61,3 +61,16 @@ def example_classifyed_paradata():
             'Align1': ['Align1', '4', 'BYTE', '0', '']
             }
         )
+
+
+@pytest.fixture
+def example_classifyed_uidacc():
+    return defaultdict(
+        lambda: None, {
+            'USER1': ['USER1', '3'],
+            'USER2': ['USER2', '3'],
+            'GUEST': ['GUEST', '1'],
+            'USER3': ['USER3', '1'],
+            'USER4': ['USER4', '1']
+            }
+        )

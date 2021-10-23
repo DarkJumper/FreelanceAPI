@@ -1,10 +1,11 @@
-from KeyWord import KeyWord
-from ParaData import ParaData
-from MsrRecord import MsrRecord
+from .KeyWord import KeyWord
+from .ParaData import ParaData
+from .MsrRecord import MsrRecord
+from .UidAcc import UidAcc
 from collections import defaultdict
 #from Gwy import Gwy
 
-FACTORIES = {"[PARA:PARADATA]": ParaData(), "[MSR:RECORD]": MsrRecord()}
+FACTORIES = {"[PARA:PARADATA]": ParaData(), "[MSR:RECORD]": MsrRecord(), "[UID:ACCMSR]": UidAcc()}
 
 
 def exported_row(listed_data: str, sep: str = ";") -> KeyWord:

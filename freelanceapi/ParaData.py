@@ -14,7 +14,7 @@ class ParaData(KeyWord):
     _length: str = ""
     __expected_key = "[PARA:PARADATA]"
 
-    def evaluate_list(self, list_of_data: str) -> Dict:
+    def evaluate_list(self, list_of_data: list[str]) -> Dict:
         if not list_of_data:
             raise WrongeData(" ".join(list_of_data), "Dataset is incorrect!")
         self._key_word, self._length, *parameter = list_of_data

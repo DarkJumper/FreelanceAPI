@@ -14,7 +14,7 @@ class MsrRecord(KeyWord):
     _length: str = ""
     __expected_key = "[MSR:RECORD]"
 
-    def evaluate_list(self, list_of_data: list) -> Dict:
+    def evaluate_list(self, list_of_data: list[str]) -> Dict:
         if not list_of_data:
             raise WrongeData(" ".join(list_of_data), "Dataset is incorrect!")
         self._key_word, self._length, *parameter = list_of_data
