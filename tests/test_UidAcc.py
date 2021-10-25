@@ -24,6 +24,8 @@ def test_get_dict_UidAcc(example_uidacc_row):
     data = example_uidacc_row.split(";")
     mod_list.evaluate_list(data)
     assert mod_list.get_dict == {
+        'KW': '[UID:ACCMSR]',
+        'LEN': '5',
         'USER1': ['USER1', '3'],
         'USER2': ['USER2', '3'],
         'GUEST': ['GUEST', '1'],
@@ -45,6 +47,8 @@ def test_modify_UidAcc(example_uidacc_row):
     mod_list.evaluate_list(data)
     mod_list.modify_parameter({"USER1": "1"})
     assert mod_list.get_dict == {
+        'KW': '[UID:ACCMSR]',
+        'LEN': '5',
         'USER1': ['USER1', '1'],
         'USER2': ['USER2', '3'],
         'GUEST': ['GUEST', '1'],

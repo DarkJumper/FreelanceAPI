@@ -10,16 +10,16 @@ from .utils.Exceptions import WrongeKey, WrongeData
 
 class UidAcc(KeyWord):
     classifyed_data: Dict = defaultdict(lambda: None)
-    _key_word: str = ""
-    _length: str = ""
-    __expected_key = "[UID:ACCMSR]"
+    key_word: str = ""
+    length: str = ""
+    expected_key = "[UID:ACCMSR]"
 
     def evaluate_list(self, list_of_data: list[str]) -> Dict:
         if not list_of_data:
             raise WrongeData(" ".join(list_of_data), "Dataset is incorrect!")
-        self._key_word, self._length, *parameter = list_of_data
-        if self._key_word != self.__expected_key:
-            raise WrongeKey(self.__expected_key, self._key_word, "The key contained in the string does not match!")
+        self.key_word, self.length, *parameter = list_of_data
+        if self.key_word != self.expected_key:
+            raise WrongeKey(self.expected_key, self.key_word, "The key contained in the string does not match!")
         classify = Classify(parameter)
         self.classifyed_data.update(classify.execute(dict_with_value_as_list(2)))
 
@@ -29,10 +29,12 @@ class UidAcc(KeyWord):
 
     @property
     def get_dict(self) -> Dict[str, list[str]]:
-        return dict(self.classifyed_data)
+        complete_dict: Dict = {"KW": self.key_word, "LEN": self.length}
+        complete_dict.update(dict(self.classifyed_data))
+        return complete_dict
 
     @property
     def get_string(self) -> str:
         created_string = Create(self.classifyed_data)
         new_string = created_string.string(create_string_from_dict_with_list())
-        return f'{self._key_word};{self._length};{new_string}'
+        return f'{self.key_word};{self.length};{new_string}'

@@ -23,7 +23,7 @@ def test_get_dict_PbvObjpath(example_pbvobjpath_row):
     mod_list = PbvObjpath()
     data = example_pbvobjpath_row.split(";")
     mod_list.evaluate_list(data)
-    assert mod_list.get_dict == {'LB': 'FBSLBLT', 'FN': 'Standart'}
+    assert mod_list.get_dict == {'KW': '[PBV:OBJPATH]', 'LEN': '1', 'LB': 'FBSLBLT', 'FN': 'Standart'}
 
 
 def test_get_string_PbvObjpath(example_pbvobjpath_row):
@@ -38,5 +38,5 @@ def test_modify_PbvObjpath(example_pbvobjpath_row):
     data = example_pbvobjpath_row.split(";")
     mod_list.evaluate_list(data)
     mod_list.modify_parameter({"LB": "TEST"})
-    assert mod_list.get_dict == {'LB': 'TEST', 'FN': 'Standart'}
+    assert mod_list.get_dict == {'KW': '[PBV:OBJPATH]', 'LEN': '1', 'LB': 'TEST', 'FN': 'Standart'}
     assert mod_list.get_string == "[PBV:OBJPATH];1;TEST;Standart"

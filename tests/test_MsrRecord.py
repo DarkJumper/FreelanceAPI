@@ -24,6 +24,8 @@ def test_get_dict_MsrRecord(example_msrrecord_row):
     data = example_msrrecord_row.split(";")
     mod_list.evaluate_list(data)
     assert mod_list.get_dict == {
+        'KW': '[MSR:RECORD]',
+        'LEN': '1',
         'MN': 'M1234',
         'LIB': 'BST_LIB_MSR',
         'BT': 'M_BIN',
@@ -52,6 +54,8 @@ def test_modify_MsrRecord(example_msrrecord_row):
     mod_list.evaluate_list(data)
     mod_list.modify_parameter({"MN": "TEST"})
     assert mod_list.get_dict == {
+        'KW': '[MSR:RECORD]',
+        'LEN': '1',
         'MN': 'TEST',
         'LIB': 'BST_LIB_MSR',
         'BT': 'M_BIN',

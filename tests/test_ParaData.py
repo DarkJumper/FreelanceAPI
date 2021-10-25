@@ -24,6 +24,8 @@ def test_get_dict_ParaData(example_paradata_row):
     data = example_paradata_row.split(";")
     mod_list.evaluate_list(data)
     assert mod_list.get_dict == {
+        'KW': '[PARA:PARADATA]',
+        'LEN': '28',
         'OScan': ['OScan', '5', 'CHECK', '1', 'j'],
         'Bt0': ['Bt0', '5', 'MTEXT', '7', 'STÖRUNG'],
         'Bt1': ['Bt1', '5', 'MTEXT', '6', 'BEREIT'],
@@ -68,6 +70,8 @@ def test_modify_ParaData(example_paradata_row):
     mod_list.evaluate_list(data)
     mod_list.modify_parameter({"Bt0": "TEST"})
     assert mod_list.get_dict == {
+        'KW': '[PARA:PARADATA]',
+        'LEN': '28',
         'OScan': ['OScan', '5', 'CHECK', '1', 'j'],
         'Bt0': ['Bt0', '5', 'MTEXT', '4', 'TEST'],
         'Bt1': ['Bt1', '5', 'MTEXT', '6', 'BEREIT'],

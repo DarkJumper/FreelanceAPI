@@ -1,25 +1,26 @@
 import pytest
 
 from freelanceapi.utils.Classify import Classify, dict_with_value_as_list, dict_zip_data
-from .ExampleList import exmaple_empty_list, example_paradata_list, example_msrrecord_list
+from .ExampleRows import example_paradata_row, example_msrrecord_row
 from freelanceapi.utils.Exceptions import KeysDoNotMatch
 
 
-def test_empty_dict_with_value_as_list(exmaple_empty_list):
-    classify = Classify(exmaple_empty_list)
+def test_empty_dict_with_value_as_list():
+    classify = Classify([])
     assert classify.execute(dict_with_value_as_list(4)) == {}
 
 
-def test_KeysDoNotMatch_dict_with_value_as_list(example_paradata_list):
+def test_KeysDoNotMatch_dict_with_value_as_list(example_paradata_row):
+    splitted_data = example_paradata_row.split(";")
     with pytest.raises(KeysDoNotMatch):
-        classify = Classify(example_paradata_list)
+        classify = Classify(splitted_data)
         assert classify.execute(dict_with_value_as_list(6)) == {}
-        classify = Classify(example_paradata_list.pop())
+        classify = Classify(splitted_data.pop())
         assert classify.execute(dict_with_value_as_list(5)) == {}
 
 
-def test_dict_with_value_as_list(example_paradata_list):
-    classify = Classify(example_paradata_list)
+def test_dict_with_value_as_list(example_paradata_row):
+    classify = Classify(example_paradata_row.split(";"))
     assert classify.execute(dict_with_value_as_list(5)) == {
         'OScan': ['OScan', '5', 'CHECK', '1', 'j'],
         'Bt0': ['Bt0', '5', 'MTEXT', '7', 'STÖRUNG'],
@@ -53,24 +54,28 @@ def test_dict_with_value_as_list(example_paradata_list):
     assert classify.execute(dict_with_value_as_list(5))["Bt0"] == ['Bt0', '5', 'MTEXT', '7', 'STÖRUNG']
 
 
-def test_empty_dict_zip_data(exmaple_empty_list):
-    classify = Classify(exmaple_empty_list)
+def test_empty_dict_zip_data():
+    classify = Classify([])
     assert classify.execute(dict_zip_data()) == {}
 
 
-def test_KeysDoNotMatch_dict_zip_data(example_msrrecord_list):
+def test_KeysDoNotMatch_dict_zip_data(example_msrrecord_row):
     keys = ["MN", "LIB", "BT", "KT", "LT", "?0", "PA", "ST", "?1", "?2", "?3", 'END']
+    splitted_data = example_msrrecord_row.split(";")
     with pytest.raises(KeysDoNotMatch):
-        classify = Classify(example_msrrecord_list)
+        classify = Classify(splitted_data)
         assert classify.execute(dict_zip_data(keys.pop())) == {}
-        classify = Classify(example_msrrecord_list.pop())
+        classify = Classify(splitted_data.pop())
         assert classify.execute(dict_zip_data(keys)) == {}
 
 
-def test_dict_with_value_as_list(example_msrrecord_list):
-    keys = ["MN", "LIB", "BT", "KT", "LT", "?0", "PA", "ST", "?1", "?2", "?3", 'END']
-    classify = Classify(example_msrrecord_list)
+def test_dict_with_value_as_list(example_msrrecord_row):
+    keys = ["KW", "LEN", "MN", "LIB", "BT", "KT", "LT", "?0", "PA", "ST", "?1", "?2", "?3", 'END']
+    splitted_data = example_msrrecord_row.split(";")
+    classify = Classify(splitted_data)
     assert classify.execute(dict_zip_data(keys)) == {
+        'KW': '[MSR:RECORD]',
+        'LEN': '1',
         'MN': 'M1234',
         'LIB': 'BST_LIB_MSR',
         'BT': 'M_BIN',

@@ -23,7 +23,16 @@ def test_get_dict_EamRecord(example_eamrecord_row):
     mod_list = EamRecord()
     data = example_eamrecord_row.split(";")
     mod_list.evaluate_list(data)
-    assert mod_list.get_dict == {'VN': '54321_IN1', '?0': '0', 'DT': 'INT', 'VT': 'Variabel', 'PI': '1', 'EX': '0'}
+    assert mod_list.get_dict == {
+        'KW': '[EAM:RECORD]',
+        'LEN': '1',
+        'VN': '54321_IN1',
+        '?0': '0',
+        'DT': 'INT',
+        'VT': 'Variabel',
+        'PI': '1',
+        'EX': '0'
+        }
 
 
 def test_get_string_EamRecord(example_eamrecord_row):
@@ -38,5 +47,14 @@ def test_modify_EamRecord(example_eamrecord_row):
     data = example_eamrecord_row.split(";")
     mod_list.evaluate_list(data)
     mod_list.modify_parameter({"VN": "54321"})
-    assert mod_list.get_dict == {'VN': '54321', '?0': '0', 'DT': 'INT', 'VT': 'Variabel', 'PI': '1', 'EX': '0'}
+    assert mod_list.get_dict == {
+        'KW': '[EAM:RECORD]',
+        'LEN': '1',
+        'VN': '54321',
+        '?0': '0',
+        'DT': 'INT',
+        'VT': 'Variabel',
+        'PI': '1',
+        'EX': '0'
+        }
     assert mod_list.get_string == "[EAM:RECORD];1;54321;0;INT;Variabel;1;0"
