@@ -29,3 +29,13 @@ def example_eamrecord_row():
 @pytest.fixture
 def example_pbvobjpath_row():
     return "[PBV:OBJPATH];1;FBSLBLT;Standart"
+
+
+@pytest.fixture
+def example_msrref_row():
+    return "[LAD:MSR_REF];M54321_AIW"
+
+
+@pytest.fixture
+def example_pararef_row():
+    return "[LAD:PARA_REF];0.1;REAL;0;0;1"
