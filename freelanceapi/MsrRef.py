@@ -4,7 +4,7 @@ from collections import defaultdict
 from .KeyWord import BaseClass
 
 
-class ParaRef(BaseClass):
+class MsrRef(BaseClass):
     classifyed_data: Dict = defaultdict(lambda: None)
     keys: list[str] = ["KW", "MN"]
     expected_key = "[LAD:MSR_REF]"

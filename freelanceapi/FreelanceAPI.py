@@ -4,7 +4,7 @@ from .MsrRecord import MsrRecord
 from .EamRecord import EamRecord
 from .UidAcc import UidAcc
 from .PbvObjpath import PbvObjpath
-from .ParaRef import ParaRef
+from .MsrRef import MsrRef
 from .ParaRef import ParaRef
 
 FACTORIES = {
@@ -13,7 +13,7 @@ FACTORIES = {
     "[UID:ACCMSR]": UidAcc(),
     "[EAM:RECORD]": EamRecord(),
     "[PBV:OBJPATH]": PbvObjpath(),
-    "[LAD:MSR_REF]": ParaRef(),
+    "[LAD:MSR_REF]": MsrRef(),
     "[LAD:PARA_REF]": ParaRef()
     }
 
