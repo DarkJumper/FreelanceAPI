@@ -7,19 +7,19 @@ from .PbvObjpath import PbvObjpath
 from .MsrRef import MsrRef
 from .ParaRef import ParaRef
 
-FACTORIES = {
+EXPORTED_FACTORIES = {
     "[PARA:PARADATA]": ParaData(),
     "[MSR:RECORD]": MsrRecord(),
     "[UID:ACCMSR]": UidAcc(),
     "[EAM:RECORD]": EamRecord(),
     "[PBV:OBJPATH]": PbvObjpath(),
     "[LAD:MSR_REF]": MsrRef(),
-    "[LAD:PARA_REF]": ParaRef()
+    "[LAD:PARA_REF]": ParaRef(),
     }
 
 
 def exported_row(listed_data: str, sep: str = ";") -> KeyWord:
-    key_word, *_ = listed_data.split(";")
-    specifed_class = FACTORIES[key_word]
-    specifed_class.evaluate_list(listed_data.split(sep))
-    return specifed_class
+    key_word, *_ = listed_data.split(sep)
+    base_class = EXPORTED_FACTORIES[key_word]
+    base_class._first_execute(listed_data, sep=sep)
+    return base_class

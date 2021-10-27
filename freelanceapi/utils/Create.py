@@ -3,38 +3,43 @@ from typing import Callable, Dict
 CreateStringStrategy = Callable[[list[str]], Dict]
 
 
-def create_string_from_dict_with_list() -> CreateStringStrategy:
+def create_string_from_dict_with_dict(sep: str = ";") -> CreateStringStrategy:
 
-    def create_from_list(dataset: dict[str, list[str]]) -> str:
+    def create_from_dict(dataset: dict[str, list[str]]) -> str:
         """
         create_string_from_list Create a new string based on the passed data.
 
         Args:
-            dataset (dict[str, list[str]]): The length of the list is irrelevant.
+            dataset (dict[str, list[str]]): a defultdict must be passed otherwise unforeseen errors will occur.
 
         Returns:
             str: newly created string. Each word is separated with semicolons (csv)
         """
         list_of_elements: list[str] = list()
-        for key in dataset:
-            list_of_elements += dataset[key]
-        return ";".join(list_of_elements)
+        for key, data in dataset.items():
+            if key in ["KW", "LEN", "MN", "END"]:
+                list_of_elements += [dataset[key]]
+                continue
+            for element in data:
+                list_of_elements += [data[element]]
+        return f'{sep}'.join(list_of_elements)
 
-    return create_from_list
+    return create_from_dict
 
 
-def create_string_from_dict_with_string() -> CreateStringStrategy:
+def create_string_from_dict_with_string(sep: str = ";") -> CreateStringStrategy:
 
     def create_from_str(dataset: dict[str, str]) -> str:
         """
         create_from_str Create a new string based on the passed data.
 
         Args:
-            dataset (dict[str, str])
+            dataset (dict[str, str]): a defultdict must be passed otherwise unforeseen errors will occur.
 
         Returns:
             str: newly created string. Each word is separated with semicolons (csv)
         """
+
         list_of_elements: list[str] = list()
         for key in dataset:
             list_of_elements += [dataset[key]]

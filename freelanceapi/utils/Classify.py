@@ -5,9 +5,10 @@ from .Exceptions import KeysDoNotMatch
 ClassifyerStrategy = Callable[[list[str]], Dict]
 
 
-def dict_with_value_as_list(range_of_list: int = 5) -> ClassifyerStrategy:
+def dict_with_value_as_list(secondary_keys: list[str] = [], range_of_list: int = 5) -> ClassifyerStrategy:
     """
     Args:
+        secondary_keys(list[str], optional): a list of keys for the inner dict. normaly the list is empty.
         range_of_list (int, optional): Lists size can be modified like this. Defaults to 5.
     """
 
@@ -26,7 +27,7 @@ def dict_with_value_as_list(range_of_list: int = 5) -> ClassifyerStrategy:
         result_dict: Dict = dict()
         for count, data in enumerate(dataset, start=0):
             if count % range_of_list == 0:
-                result_dict[data] = dataset[count:count + range_of_list]
+                result_dict[data] = dict(zip(secondary_keys, dataset[count:count + range_of_list]))
         return result_dict
 
     return splitted_value_as_list
