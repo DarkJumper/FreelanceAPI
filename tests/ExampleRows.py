@@ -39,3 +39,8 @@ def example_msrref_row():
 @pytest.fixture
 def example_pararef_row():
     return "[LAD:PARA_REF];0.1;REAL;0;0;1"
+
+
+@pytest.fixture
+def example_gwy_row():
+    return "[GWY:ACCEAM];54321_AUF;1;T164;1;1;O168;3;0;1"

@@ -6,6 +6,7 @@ from .UidAcc import UidAcc
 from .PbvObjpath import PbvObjpath
 from .MsrRef import MsrRef
 from .ParaRef import ParaRef
+from .Gwy import Gwy
 
 EXPORTED_FACTORIES = {
     "[PARA:PARADATA]": ParaData(),
@@ -15,6 +16,8 @@ EXPORTED_FACTORIES = {
     "[PBV:OBJPATH]": PbvObjpath(),
     "[LAD:MSR_REF]": MsrRef(),
     "[LAD:PARA_REF]": ParaRef(),
+    "[GWY:ACCEAM]": Gwy(),
+    "[GWY:ACCMSR]": Gwy()
     }
 
 

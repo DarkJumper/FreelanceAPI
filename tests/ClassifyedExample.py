@@ -286,3 +286,23 @@ def example_classifyed_pararef():
 @pytest.fixture
 def example_classifyed_pbvobjpath():
     return {'KW': '[PBV:OBJPATH]', 'LEN': '1', 'LB': 'FBSLBLT', 'FN': 'Standart'}
+
+
+@pytest.fixture
+def example_classifyed_gwy():
+    return {
+        'KW': '[GWY:ACCEAM]',
+        'MN': '54321_AUF',
+        'LEN': '1',
+        'T164': {
+            'GN': 'T164',
+            'G1': '1',
+            'G2': '1'
+            },
+        'O168': {
+            'GN': 'O168',
+            'G1': '3',
+            'G2': '0'
+            },
+        'END': '1'
+        }

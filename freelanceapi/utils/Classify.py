@@ -22,6 +22,8 @@ def dict_with_value_as_list(secondary_keys: list[str] = [], range_of_list: int =
         Returns:
             Dict[str, list[str]]:  Daten werden in einem dict mit einer liste als value 
         """
+        print(len(dataset))
+        print(range_of_list)
         if len(dataset) % range_of_list:
             raise KeysDoNotMatch(range_of_list, "The specified length of the list does not match the dataset!")
         result_dict: Dict = dict()
