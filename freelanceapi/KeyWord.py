@@ -43,20 +43,22 @@ class BaseClass(KeyWord):
         self.data_as_dict = {}
         splitted_data = new_data_string.split(sep)
         if not new_data_string:
-            raise WrongeData(" ".join(splitted_data), "Dataset is incorrect!")
+            raise WrongeData(",".join(splitted_data), "Dataset is incorrect!")
         if splitted_data[0] != self.expected_key:
             raise WrongeKey(self.expected_key, splitted_data[0], "The key contained in the string does not match!")
         classify = Classify(splitted_data)
         self.data_as_dict.update(classify.execute(dict_zip_data(self.keys)))
+        self.data_as_string = new_data_string
 
     def dict_to_string(self, new_data_dict: Dict[str, Dict[str, str]], sep: str = ";") -> None:
         self.data_as_string = ""
         if not new_data_dict:
-            raise WrongeData(" ".join(new_data_dict), "Dataset is incorrect!")
+            raise WrongeData(",".join(new_data_dict), "Dataset is incorrect!")
         if new_data_dict["KW"] != self.expected_key:
             raise WrongeKey(self.expected_key, new_data_dict["KW"], "The key contained in the string does not match!")
-        created_string = Create(self.data_as_dict)
+        created_string = Create(new_data_dict)
         self.data_as_string = created_string.string(create_string_from_dict_with_string())
+        self.data_as_dict = new_data_dict
 
     @property
     def get_dict(self) -> Dict[str, str]:

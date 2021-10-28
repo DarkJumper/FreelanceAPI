@@ -2,6 +2,7 @@ import pytest
 
 from freelanceapi.ParaData import ParaData
 from .ExampleRows import exmaple_empty_row, example_paradata_row
+from .ClassifyedExample import example_empty_data, example_classifyed_paradata
 from freelanceapi.utils.Exceptions import WrongeData, WrongeKey
 
 
@@ -229,3 +230,46 @@ def test_get_string_ParaData(example_paradata_row):
     mod_list = ParaData()
     mod_list._first_execute(example_paradata_row)
     assert mod_list.get_string == example_paradata_row
+
+
+def test_dict_to_string_ParaData(example_classifyed_paradata, example_paradata_row):
+    mod_list = ParaData()
+    mod_list.dict_to_string(example_classifyed_paradata)
+    assert mod_list.get_string == example_paradata_row
+    assert mod_list.get_dict == example_classifyed_paradata
+
+
+def test_string_to_dict_ParaData(example_classifyed_paradata, example_paradata_row):
+    mod_list = ParaData()
+    mod_list.string_to_dict(example_paradata_row)
+    assert mod_list.get_string == example_paradata_row
+    assert mod_list.get_dict == example_classifyed_paradata
+
+
+def test_string_to_dict_WrongeData_ParaData(exmaple_empty_row):
+    with pytest.raises(WrongeData):
+        mod_list = ParaData()
+        mod_list.string_to_dict(exmaple_empty_row)
+
+
+def test_string_to_dict_WrongKey_ParaData(example_paradata_row):
+    with pytest.raises(WrongeKey):
+        mod_list = ParaData()
+        data = example_paradata_row.split(";")
+        data[0] = "TEST"
+        test = ";".join(data)
+        mod_list.string_to_dict(test)
+
+
+def test_dict_to_string_WrongeData_ParaData(example_empty_data):
+    with pytest.raises(WrongeData):
+        mod_list = ParaData()
+        mod_list.dict_to_string(example_empty_data)
+
+
+def test_dict_to_string_WrongKey_ParaData(example_classifyed_paradata):
+    with pytest.raises(WrongeKey):
+        mod_list = ParaData()
+        test = example_classifyed_paradata
+        test['KW'] = "TEST"
+        mod_list.dict_to_string(test)
