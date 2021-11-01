@@ -1,6 +1,6 @@
 import pytest
 
-from freelanceapi.Gwy import Gwy
+from freelanceapi.msr.Gwy import Gwy
 from .ExampleRows import exmaple_empty_row, example_gwy_row
 from .ClassifyedExample import example_empty_data, example_classifyed_gwy
 from freelanceapi.utils.Exceptions import WrongeData, WrongeKey

@@ -1,6 +1,6 @@
 import pytest
 
-from freelanceapi.MsrRecord import MsrRecord
+from freelanceapi.msr.MsrRecord import MsrRecord
 from .ExampleRows import exmaple_empty_row, example_msrrecord_row
 from .ClassifyedExample import example_empty_data, example_classifyed_msrrecord
 from freelanceapi.utils.Exceptions import WrongeData, WrongeKey

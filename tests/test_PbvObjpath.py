@@ -1,6 +1,6 @@
 import pytest
 
-from freelanceapi.PbvObjpath import PbvObjpath
+from freelanceapi.msr.PbvObjpath import PbvObjpath
 from .ExampleRows import exmaple_empty_row, example_pbvobjpath_row
 from .ClassifyedExample import example_empty_data, example_classifyed_pbvobjpath
 from freelanceapi.utils.Exceptions import WrongeData, WrongeKey

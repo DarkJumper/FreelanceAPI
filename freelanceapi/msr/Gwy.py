@@ -1,9 +1,9 @@
 from typing import Dict
 
 from .KeyWord import KeyWord
-from .utils.Classify import Classify, dict_with_value_as_list
-from .utils.Create import Create, create_string_from_dict_with_dict
-from .utils.Exceptions import WrongeKey, WrongeData
+from ..utils.Classify import Classify, dict_with_value_as_list
+from ..utils.Create import Create, create_string_from_dict_with_dict
+from ..utils.Exceptions import WrongeKey, WrongeData
 
 
 class Gwy(KeyWord):

@@ -1,6 +1,6 @@
 import pytest
 
-from freelanceapi.EamRecord import EamRecord
+from freelanceapi.msr.EamRecord import EamRecord
 from .ExampleRows import exmaple_empty_row, example_eamrecord_row
 from .ClassifyedExample import example_empty_data, example_classifyed_eamrecord
 from freelanceapi.utils.Exceptions import WrongeData, WrongeKey

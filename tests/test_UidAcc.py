@@ -1,6 +1,6 @@
 import pytest
 
-from freelanceapi.UidAcc import UidAcc
+from freelanceapi.msr.UidAcc import UidAcc
 from .ExampleRows import exmaple_empty_row, example_uidacc_row
 from .ClassifyedExample import example_empty_data, example_classifyed_uidacc
 from freelanceapi.utils.Exceptions import WrongeData, WrongeKey

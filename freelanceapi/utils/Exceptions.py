@@ -47,7 +47,7 @@ class WrongeKey(Exception):
         super().__init__(self.message)
 
     def __str__(self):
-        return f'Expectet: {self.key_word} Passed: {self.current_keyword} Msg:{self.message}'
+        return f'Expectet: {self.key_word}\nPassed: {self.current_keyword}\nMsg:{self.message}'
 
 
 class WrongeData(Exception):
@@ -64,4 +64,4 @@ class WrongeData(Exception):
         super().__init__(self.message)
 
     def __str__(self):
-        return f'Passed Data: {self.data} Msg:{self.message}'
+        return f'Passed Data: {self.data}\nMsg:{self.message}'

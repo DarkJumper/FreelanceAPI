@@ -1,6 +1,6 @@
 import pytest
 
-from freelanceapi.ParaData import ParaData
+from freelanceapi.msr.ParaData import ParaData
 from .ExampleRows import exmaple_empty_row, example_paradata_row
 from .ClassifyedExample import example_empty_data, example_classifyed_paradata
 from freelanceapi.utils.Exceptions import WrongeData, WrongeKey
