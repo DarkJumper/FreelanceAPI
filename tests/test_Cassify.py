@@ -2,7 +2,7 @@ import pytest
 
 from freelanceapi.utils.Classify import Classify, dict_with_value_as_list, dict_zip_data
 from .ExampleRows import example_paradata_row, example_msrrecord_row
-from freelanceapi.utils.Exceptions import KeysDoNotMatch
+from freelanceapi.utils.Exceptions import KeysDoNotMatchLength
 
 
 def test_empty_dict_with_value_as_list():
@@ -10,9 +10,9 @@ def test_empty_dict_with_value_as_list():
     assert classify.execute(dict_with_value_as_list(4)) == {}
 
 
-def test_KeysDoNotMatch_dict_with_value_as_list(example_paradata_row):
+def test_KeysDoNotMatchLength_dict_with_value_as_list(example_paradata_row):
     splitted_data = example_paradata_row.split(";")
-    with pytest.raises(KeysDoNotMatch):
+    with pytest.raises(KeysDoNotMatchLength):
         classify = Classify(splitted_data)
         assert classify.execute(dict_with_value_as_list(6)) == {}
         classify = Classify(splitted_data.pop())
@@ -228,10 +228,10 @@ def test_empty_dict_zip_data():
     assert classify.execute(dict_zip_data()) == {}
 
 
-def test_KeysDoNotMatch_dict_zip_data(example_msrrecord_row):
+def test_KeysDoNotMatchLength_dict_zip_data(example_msrrecord_row):
     keys = ["MN", "LIB", "BT", "KT", "LT", "?0", "PA", "ST", "?1", "?2", "?3", 'END']
     splitted_data = example_msrrecord_row.split(";")
-    with pytest.raises(KeysDoNotMatch):
+    with pytest.raises(KeysDoNotMatchLength):
         classify = Classify(splitted_data)
         assert classify.execute(dict_zip_data(keys.pop())) == {}
         classify = Classify(splitted_data.pop())

@@ -1,6 +1,6 @@
 from typing import Callable, Dict
 
-from .Exceptions import KeysDoNotMatch
+from .Exceptions import KeysDoNotMatchLength
 
 ClassifyerStrategy = Callable[[list[str]], Dict]
 
@@ -22,10 +22,8 @@ def dict_with_value_as_list(secondary_keys: list[str] = [], range_of_list: int =
         Returns:
             Dict[str, list[str]]:  Daten werden in einem dict mit einer liste als value 
         """
-        print(len(dataset))
-        print(range_of_list)
         if len(dataset) % range_of_list:
-            raise KeysDoNotMatch(range_of_list, "The specified length of the list does not match the dataset!")
+            raise KeysDoNotMatchLength(range_of_list, "The specified length of the list does not match the dataset!")
         result_dict: Dict = dict()
         for count, data in enumerate(dataset, start=0):
             if count % range_of_list == 0:
@@ -43,7 +41,7 @@ def dict_zip_data(dict_keys: list[str] = []) -> ClassifyerStrategy:
 
     def zip_data_with_keys(dataset: list[str]) -> Dict[str, str]:
         if len(dataset) != len(dict_keys):
-            raise KeysDoNotMatch(
+            raise KeysDoNotMatchLength(
                 ",".join(dict_keys), "The length of the keys does not match the length of the entered data"
                 )
         return dict(zip(dict_keys, dataset))
