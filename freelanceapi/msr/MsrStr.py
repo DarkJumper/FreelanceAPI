@@ -1,4 +1,4 @@
-from typing import Protocol, Dict
+from typing import Protocol, Dict, Optional
 
 from .MsrMetaData import EamRecord, MsrRecord, MsrRef, ParaData, ParaRef, PbvObjpath, UidAcc, Gwy
 from ..utils.Create import Create, create_string_from_dict_with_dict, create_string_from_dict_with_string
@@ -7,10 +7,10 @@ from ..utils.Create import Create, create_string_from_dict_with_dict, create_str
 class MsrStr(Protocol):
     """Basic representation of Msr rows as String"""
 
-    def prepare_merge(self, dataset: str, sep=""):
+    def prepare_merge(self, dataset: str, sep: Optional[str] = ";"):
         """Shares data needed for merging. """
 
-    def merge_string(self):
+    def merge_string(self) -> str:
         """Merge data for Dataprocessing."""
 
 
@@ -28,7 +28,7 @@ class ParaDataStr(MsrStr):
     _dataset = {}
     _sep = ""
 
-    def prepare_merge(self, dataset: Dict[str, Dict[str, str]], sep=";") -> None:
+    def prepare_merge(self, dataset: Dict[str, Dict[str, str]], sep: Optional[str] = ";") -> None:
         """
         prepare_merge Shares data needed for merging. 
 
@@ -72,7 +72,7 @@ class UidAccStr(MsrStr):
     _dataset = {}
     _sep = ""
 
-    def prepare_merge(self, dataset: Dict[str, Dict[str, str]], sep=";") -> None:
+    def prepare_merge(self, dataset: Dict[str, Dict[str, str]], sep: Optional[str] = ";") -> None:
         """
         prepare_merge Shares data needed for merging. 
 
@@ -116,7 +116,7 @@ class GwyStr(MsrStr):
     _dataset = {}
     _sep = ""
 
-    def prepare_merge(self, dataset: Dict[str, Dict[str, str]], sep=";") -> None:
+    def prepare_merge(self, dataset: Dict[str, Dict[str, str]], sep: Optional[str] = ";") -> None:
         """
         prepare_merge Shares data needed for merging. 
 
@@ -160,7 +160,7 @@ class MsrRecordStr(MsrStr):
     _dataset = {}
     _sep = ""
 
-    def prepare_merge(self, dataset: Dict[str, Dict[str, str]], sep=";") -> None:
+    def prepare_merge(self, dataset: Dict[str, Dict[str, str]], sep: Optional[str] = ";") -> None:
         """
         prepare_merge Shares data needed for merging. 
 
@@ -204,7 +204,7 @@ class MsrRefStr(MsrStr):
     _dataset = {}
     _sep = ""
 
-    def prepare_merge(self, dataset: Dict[str, Dict[str, str]], sep=";") -> None:
+    def prepare_merge(self, dataset: Dict[str, Dict[str, str]], sep: Optional[str] = ";") -> None:
         """
         prepare_merge Shares data needed for merging. 
 
@@ -248,7 +248,7 @@ class ParaRefStr(MsrStr):
     _dataset = {}
     _sep = ""
 
-    def prepare_merge(self, dataset: Dict[str, Dict[str, str]], sep=";") -> None:
+    def prepare_merge(self, dataset: Dict[str, Dict[str, str]], sep: Optional[str] = ";") -> None:
         """
         prepare_merge Shares data needed for merging. 
 
@@ -292,7 +292,7 @@ class EamRecordStr(MsrStr):
     _dataset = {}
     _sep = ""
 
-    def prepare_merge(self, dataset: Dict[str, Dict[str, str]], sep=";") -> None:
+    def prepare_merge(self, dataset: Dict[str, Dict[str, str]], sep: Optional[str] = ";") -> None:
         """
         prepare_merge Shares data needed for merging. 
 
@@ -336,7 +336,7 @@ class PbvObjpathStr(MsrStr):
     _dataset = {}
     _sep = ""
 
-    def prepare_merge(self, dataset: Dict[str, Dict[str, str]], sep=";") -> None:
+    def prepare_merge(self, dataset: Dict[str, Dict[str, str]], sep: Optional[str] = ";") -> None:
         """
         prepare_merge Shares data needed for merging. 
 

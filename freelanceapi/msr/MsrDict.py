@@ -1,4 +1,4 @@
-from typing import Dict, Protocol
+from typing import Dict, Protocol, Optional
 
 from .MsrMetaData import EamRecord, MsrRecord, MsrRef, ParaData, ParaRef, PbvObjpath, UidAcc, Gwy
 from ..utils.Classify import Classify, dict_with_value_as_list, dict_zip_data
@@ -7,10 +7,10 @@ from ..utils.Classify import Classify, dict_with_value_as_list, dict_zip_data
 class MsrDict(Protocol):
     """Basic representation of Msr rows as Dict."""
 
-    def prepare_merge(self, dataset: str, sep=""):
+    def prepare_merge(self, dataset: str, sep: Optional[str] = ";"):
         """Shares data needed for merging. """
 
-    def merge_dict(self):
+    def merge_dict(self) -> Dict:
         """Merge data for Dataprocessing."""
 
 
@@ -27,7 +27,7 @@ class ParaDataDict(MsrDict):
     meta_data = ParaData()
     _splitted_data = []
 
-    def prepare_merge(self, dataset: str, sep=";") -> None:
+    def prepare_merge(self, dataset: str, sep: Optional[str] = ";") -> None:
         """
         prepare_merge Shares data needed for merging. 
 
@@ -70,7 +70,7 @@ class UidAccDict(MsrDict):
     meta_data = UidAcc()
     _splitted_data = []
 
-    def prepare_merge(self, dataset: str, sep=";") -> None:
+    def prepare_merge(self, dataset: str, sep: Optional[str] = ";") -> None:
         """
         prepare_merge Shares data needed for merging. 
 
@@ -159,7 +159,7 @@ class MsrRecordDict(MsrDict):
     meta_data = MsrRecord()
     _splitted_data = []
 
-    def prepare_merge(self, dataset: str, sep=";"):
+    def prepare_merge(self, dataset: str, sep: Optional[str] = ";"):
         """
         prepare_merge Shares data needed for merging. 
 
@@ -202,7 +202,7 @@ class MsrRefDict(MsrDict):
     meta_data = MsrRef()
     _splitted_data = []
 
-    def prepare_merge(self, dataset: str, sep=";"):
+    def prepare_merge(self, dataset: str, sep: Optional[str] = ";"):
         """
         prepare_merge Shares data needed for merging. 
 
@@ -245,7 +245,7 @@ class ParaRefDict(MsrDict):
     meta_data = ParaRef()
     _splitted_data = []
 
-    def prepare_merge(self, dataset: str, sep=";"):
+    def prepare_merge(self, dataset: str, sep: Optional[str] = ";"):
         """
         prepare_merge Shares data needed for merging. 
 
@@ -288,7 +288,7 @@ class EamRecordDict(MsrDict):
     meta_data = EamRecord()
     _splitted_data = []
 
-    def prepare_merge(self, dataset: str, sep=";"):
+    def prepare_merge(self, dataset: str, sep: Optional[str] = ";"):
         """
         prepare_merge Shares data needed for merging. 
 
@@ -331,7 +331,7 @@ class PbvObjpathDict(MsrDict):
     meta_data = PbvObjpath()
     _splitted_data = []
 
-    def prepare_merge(self, dataset: str, sep=";"):
+    def prepare_merge(self, dataset: str, sep: Optional[str] = ";"):
         """
         prepare_merge Shares data needed for merging. 
 

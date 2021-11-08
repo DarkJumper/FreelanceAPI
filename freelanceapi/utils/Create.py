@@ -1,9 +1,9 @@
-from typing import Callable, Dict
+from typing import Callable, Dict, Optional
 
 CreateStringStrategy = Callable[[list[str]], Dict]
 
 
-def create_string_from_dict_with_dict(sep: str = ";") -> CreateStringStrategy:
+def create_string_from_dict_with_dict(sep: Optional[str] = ";") -> CreateStringStrategy:
 
     def create_from_dict(dataset: dict[str, list[str]]) -> str:
         """
@@ -27,7 +27,7 @@ def create_string_from_dict_with_dict(sep: str = ";") -> CreateStringStrategy:
     return create_from_dict
 
 
-def create_string_from_dict_with_string(sep: str = ";") -> CreateStringStrategy:
+def create_string_from_dict_with_string(sep: Optional[str] = ";") -> CreateStringStrategy:
 
     def create_from_str(dataset: dict[str, str]) -> str:
         """
@@ -43,7 +43,7 @@ def create_string_from_dict_with_string(sep: str = ";") -> CreateStringStrategy:
         list_of_elements: list[str] = list()
         for key in dataset:
             list_of_elements += [dataset[key]]
-        return ";".join(list_of_elements)
+        return f'{sep}'.join(list_of_elements)
 
     return create_from_str
 
