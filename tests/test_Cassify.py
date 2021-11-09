@@ -1,7 +1,7 @@
 import pytest
 
-from freelanceapi.utils.Classify import Classify, dict_with_value_as_list, dict_zip_data
-from .ExampleRows import example_paradata_row, example_msrrecord_row
+from freelanceapi.utils.Classify import Classify, dict_with_value_as_list, dict_zip_data, tuple_of_decode_ascii_code
+from .ExampleRows import example_paradata_row, example_msrrecord_row, exmaple_hw2blob_row
 from freelanceapi.utils.Exceptions import KeysDoNotMatchLength
 
 
@@ -259,3 +259,29 @@ def test_dict_with_value_as_list(example_msrrecord_row):
         'END': '2'
         }
     assert classify.execute(dict_zip_data(keys))["MN"] == "M1234"
+
+
+def test_empty_tuple_of_decode_ascii_code():
+    classify = Classify([])
+    assert classify.execute(tuple_of_decode_ascii_code("")) == {"": ()}
+
+
+def test_KeysDoNotMatchLength_tuple_of_decode_ascii_code(exmaple_hw2blob_row):
+    splitted_data = exmaple_hw2blob_row.split(";")
+    with pytest.raises(KeysDoNotMatchLength):
+        classify = Classify(splitted_data.pop())
+        assert classify.execute(tuple_of_decode_ascii_code("DTMC", 2)) == {}
+
+
+def test_tuple_of_decode_ascii_code(exmaple_hw2blob_row):
+    splitted_row = exmaple_hw2blob_row.split(";")
+    classify = Classify(splitted_row.pop())
+    assert classify.execute(tuple_of_decode_ascii_code("DTMC", splitted_row.pop())) == {
+        'DTMC': (
+            'Unit_Diag_Bit(0) = "CI840 B error"', 'Unit_Diag_Bit(1) = "CI840 A error"',
+            'Unit_Diag_Bit(3) = "Redundant power A Failure"', 'Unit_Diag_Bit(4) = "Redundant power B failure"',
+            'Unit_Diag_Bit(6) = "Redundancy warning"', 'Unit_Diag_Bit(7) = "Station warning"',
+            'Unit_Diag_Bit(8) = "Station address warning"', 'Unit_Diag_Bit(14) = "Redundant cable A error"',
+            'Unit_Diag_Bit(15) = "Redundant cable B error"'
+            )
+        }

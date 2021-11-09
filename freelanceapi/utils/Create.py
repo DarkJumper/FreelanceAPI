@@ -1,6 +1,6 @@
-from typing import Callable, Dict, Optional
+from typing import Callable, Dict, Optional, Tuple, Union
 
-CreateStringStrategy = Callable[[list[str]], Dict]
+CreateStringStrategy = Callable[[Union[list[str], Tuple[str]]], Dict]
 
 
 def create_string_from_dict_with_dict(sep: Optional[str] = ";") -> CreateStringStrategy:
@@ -46,6 +46,30 @@ def create_string_from_dict_with_string(sep: Optional[str] = ";") -> CreateStrin
         return f'{sep}'.join(list_of_elements)
 
     return create_from_str
+
+
+def create_ascii_hex() -> CreateStringStrategy:
+
+    def ascii_hex_encode(dataset: Tuple[str]) -> str:
+        """
+        ascii_hex_encode Tuple is formatted back to ascii. After each character comes NULL. After each tuple element comes a return. The string is always ended with double NULL.
+
+        Args:
+            dataset (Tuple[str]): Caution the tuple should not be processed!
+
+        Returns:
+            str: A finished ascii block.
+        """
+        if dataset:
+            final_row = ""
+            for elements in dataset:
+                final_row += '00'.join(hex_ascii.encode('utf-8').hex() for hex_ascii in elements)
+                final_row += '000D000A00'
+            final_row += "0000"
+            return final_row.upper()
+        return ""
+
+    return ascii_hex_encode
 
 
 class Create:

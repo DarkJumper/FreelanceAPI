@@ -306,3 +306,22 @@ def example_classifyed_gwy():
             },
         'END': '1'
         }
+
+
+@pytest.fixture
+def example_classifyed_hw2blob():
+    return {
+        'KW':
+        '[HW2_BLOB]',
+        'DTMN':
+        '104',
+        'QC':
+        '776',
+        'DTMC': (
+            'Unit_Diag_Bit(0) = "CI840 B error"', 'Unit_Diag_Bit(1) = "CI840 A error"',
+            'Unit_Diag_Bit(3) = "Redundant power A Failure"', 'Unit_Diag_Bit(4) = "Redundant power B failure"',
+            'Unit_Diag_Bit(6) = "Redundancy warning"', 'Unit_Diag_Bit(7) = "Station warning"',
+            'Unit_Diag_Bit(8) = "Station address warning"', 'Unit_Diag_Bit(14) = "Redundant cable A error"',
+            'Unit_Diag_Bit(15) = "Redundant cable B error"'
+            )
+        }
