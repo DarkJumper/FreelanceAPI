@@ -1,7 +1,7 @@
 from .msr.MsrDict import EamRecordDict, MsrDict, MsrRecordDict, MsrRefDict, ParaDataDict, ParaRefDict, PbvObjpathDict, UidAccDict, GwyDict
 from .msr.MsrStr import EamRecordStr, MsrStr, MsrRecordStr, MsrRefStr, ParaDataStr, ParaRefStr, PbvObjpathStr, UidAccStr, GwyStr
-from .hwm.HwmDict import HwmDict
-from .hwm.HwmStr import HwmStr
+from .hwm.HwmDict import Hw2BlobDict, HwmDict
+from .hwm.HwmStr import Hw2BlobStr, HwmStr
 
 EXPORTED_MSR_FACTORIES = {
     "[PARA:PARADATA]": (ParaDataDict, ParaDataStr),
@@ -15,7 +15,7 @@ EXPORTED_MSR_FACTORIES = {
     "[PBV:OBJPATH]": (PbvObjpathDict, PbvObjpathStr)
     }
 
-EXPORTED_HWM_FACTORIES = {}
+EXPORTED_HWM_FACTORIES = {"[HW2_BLOB]": (Hw2BlobDict, Hw2BlobStr)}
 
 
 def read_msr_row(listed_data: str, sep: str = ";") -> tuple[MsrDict, MsrStr]:
