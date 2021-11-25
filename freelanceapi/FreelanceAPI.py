@@ -1,21 +1,65 @@
-from .msr.MsrDict import EamRecordDict, MsrDict, MsrRecordDict, MsrRefDict, ParaDataDict, ParaRefDict, PbvObjpathDict, UidAccDict, GwyDict
-from .msr.MsrStr import EamRecordStr, MsrStr, MsrRecordStr, MsrRefStr, ParaDataStr, ParaRefStr, PbvObjpathStr, UidAccStr, GwyStr
 from .hwm.HwmDict import Hw2BlobDict, HwmDict
 from .hwm.HwmStr import Hw2BlobStr, HwmStr
+from .msr.MsrDict import (
+    EamRecordDict, GwyDict, MsrDict, MsrRecordDict, MsrRefDict, ParaDataDict, ParaRefDict, PbvObjpathDict, UidAccDict
+    )
+from .msr.MsrStr import (
+    EamRecordStr, GwyStr, MsrRecordStr, MsrRefStr, MsrStr, ParaDataStr, ParaRefStr, PbvObjpathStr, UidAccStr
+    )
 
-EXPORTED_MSR_FACTORIES = {
-    "[PARA:PARADATA]": (ParaDataDict, ParaDataStr),
-    "[UID:ACCMSR]'": (UidAccDict, UidAccStr),
-    "[GWY:ACCEAM]": (GwyDict, GwyStr),
-    "[GWY:ACCMSR]": (GwyDict, GwyStr),
-    "[MSR:RECORD]": (MsrRecordDict, MsrRecordStr),
-    "[LAD:MSR_REF]": (MsrRefDict, MsrRefStr),
-    "[LAD:PARA_REF]": (ParaRefDict, ParaRefStr),
-    "[EAM:RECORD]": (EamRecordDict, EamRecordStr),
-    "[PBV:OBJPATH]": (PbvObjpathDict, PbvObjpathStr)
-    }
 
-EXPORTED_HWM_FACTORIES = {"[HW2_BLOB]": (Hw2BlobDict, Hw2BlobStr)}
+class ExportedMsrFactories:
+    _msr_factories = {
+        "[PARA:PARADATA]": (ParaDataDict, ParaDataStr),
+        "[UID:ACCMSR]'": (UidAccDict, UidAccStr),
+        "[GWY:ACCEAM]": (GwyDict, GwyStr),
+        "[GWY:ACCMSR]": (GwyDict, GwyStr),
+        "[MSR:RECORD]": (MsrRecordDict, MsrRecordStr),
+        "[LAD:MSR_REF]": (MsrRefDict, MsrRefStr),
+        "[LAD:PARA_REF]": (ParaRefDict, ParaRefStr),
+        "[EAM:RECORD]": (EamRecordDict, EamRecordStr),
+        "[PBV:OBJPATH]": (PbvObjpathDict, PbvObjpathStr)
+        }
+
+    def __getitem__(self, key):
+        return self._msr_factories[key]
+
+    def __repr__(self):
+        return repr(self._msr_factories)
+
+    def __len__(self):
+        return len(self._msr_factories)
+
+    def copy(self):
+        return self._msr_factories.copy()
+
+    def keys(self):
+        return self._msr_factories.keys()
+
+    def values(self):
+        return self._msr_factories.values()
+
+
+class ExportedHwmFactories:
+    _hwm_factories = {"[HW2_BLOB]": (Hw2BlobDict, Hw2BlobStr)}
+
+    def __getitem__(self, key):
+        return self._hwm_factories[key]
+
+    def __repr__(self):
+        return repr(self._hwm_factories)
+
+    def __len__(self):
+        return len(self._hwm_factories)
+
+    def copy(self):
+        return self._hwm_factories.copy()
+
+    def keys(self):
+        return self._hwm_factories.keys()
+
+    def values(self):
+        return self._hwm_factories.values()
 
 
 def read_msr_row(listed_data: str, sep: str = ";") -> tuple[MsrDict, MsrStr]:
@@ -30,8 +74,9 @@ def read_msr_row(listed_data: str, sep: str = ";") -> tuple[MsrDict, MsrStr]:
         tuple[MsrDict, MsrStr]: a tuple with an instance to convert to a dict and to convert to string
     """
     key_word, *_ = listed_data.split(sep)
+    find_msr_factory_tuple = ExportedMsrFactories()
     try:
-        (dict_class, string_class) = EXPORTED_MSR_FACTORIES[key_word]
+        (dict_class, string_class) = find_msr_factory_tuple[key_word]
         return (dict_class(), string_class())
     except KeyError:
         print(f"unknown keyword in line: {key_word}.")
@@ -49,8 +94,9 @@ def read_hwm_row(listed_data: str, sep: str = ";") -> tuple[HwmDict, HwmStr]:
         tuple[HwmDict, HwmStr]: a tuple with an instance to convert to a dict and to convert to string
     """
     key_word, *_ = listed_data.split(sep)
+    find_hwm_factory_tuple = ExportedHwmFactories()
     try:
-        (dict_class, string_class) = EXPORTED_HWM_FACTORIES[key_word]
+        (dict_class, string_class) = find_hwm_factory_tuple[key_word]
         return (dict_class(), string_class())
     except KeyError:
         print(f"unknown keyword in line: {key_word}.")
