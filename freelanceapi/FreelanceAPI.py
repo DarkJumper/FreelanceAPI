@@ -70,16 +70,19 @@ def read_msr_row(listed_data: str, sep: str = ";") -> tuple[MsrDict, MsrStr]:
         listed_data (str): An exported row of freelance is required. These must contain a key word. Key words are predefined.
         sep (str, optional): Seperator for the string must be set. Defaults to ";".
 
+
+    Raises:
+        KeyError: If the keyword in the string does not match the expected string, the error is returned.
+
     Returns:
         tuple[MsrDict, MsrStr]: a tuple with an instance to convert to a dict and to convert to string
     """
     key_word, *_ = listed_data.split(sep)
     find_msr_factory_tuple = ExportedMsrFactories()
-    try:
-        (dict_class, string_class) = find_msr_factory_tuple[key_word]
-        return (dict_class(), string_class())
-    except KeyError:
-        print(f"unknown keyword in line: {key_word}.")
+    if key_word not in find_msr_factory_tuple.keys():
+        raise KeyError(f"unknown keyword in line: {key_word}.")
+    (dict_class, string_class) = find_msr_factory_tuple[key_word]
+    return (dict_class(), string_class())
 
 
 def read_hwm_row(listed_data: str, sep: str = ";") -> tuple[HwmDict, HwmStr]:
@@ -90,13 +93,15 @@ def read_hwm_row(listed_data: str, sep: str = ";") -> tuple[HwmDict, HwmStr]:
         listed_data (str): An exported row of freelance is required. These must contain a key word. Key words are predefined.
         sep (str, optional): Seperator for the string must be set. Defaults to ";".
 
+    Raises:
+        KeyError: If the keyword in the string does not match the expected string, the error is returned.
+
     Returns:
         tuple[HwmDict, HwmStr]: a tuple with an instance to convert to a dict and to convert to string
     """
     key_word, *_ = listed_data.split(sep)
     find_hwm_factory_tuple = ExportedHwmFactories()
-    try:
-        (dict_class, string_class) = find_hwm_factory_tuple[key_word]
-        return (dict_class(), string_class())
-    except KeyError:
-        print(f"unknown keyword in line: {key_word}.")
+    if key_word not in find_hwm_factory_tuple.keys():
+        raise KeyError(f"unknown keyword in line: {key_word}.")
+    (dict_class, string_class) = find_hwm_factory_tuple[key_word]
+    return (dict_class(), string_class())
