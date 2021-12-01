@@ -140,6 +140,8 @@ cython_debug/
 # excel / csv
 *.csv
 
+# word
+*.docx
 
 # DS Store
 .DS_Store
