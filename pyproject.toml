@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "FreelanceAPI"
-version = "0.1.1"
+version = "0.1.2"
 description = "FreelanceAPI is a module for reading & evaluating export files from the Freelance control system."
 
 license = "GNU"
