@@ -1,3 +1,3 @@
-from .FreelanceAPI import read_hwm_row, read_msr_row
+from .FreelanceAPI import read_freelance_row
 
-__version__ = '0.1.1'
+__version__ = '0.1.2'
