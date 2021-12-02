@@ -1,7 +1,7 @@
-from typing import Dict, Protocol, Tuple, Optional
+from typing import Dict, Optional, Protocol, Tuple
 
+from ..utils.Create import (Create, create_ascii_hex, create_string_from_dict_with_string)
 from .HwmMetaData import Hw2Blob
-from ..utils.Create import Create, create_ascii_hex, create_string_from_dict_with_string
 
 
 class HwmStr(Protocol):

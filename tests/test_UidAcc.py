@@ -1,9 +1,9 @@
 import pytest
-
 from freelanceapi.msr.MsrDict import UidAccDict
 from freelanceapi.msr.MsrStr import UidAccStr
-from .ExampleRows import exmaple_empty_row, example_uidacc_row
-from .ClassifyedExample import example_empty_data, example_classifyed_uidacc
+
+from .ClassifyedExample import example_classifyed_uidacc, example_empty_data
+from .ExampleRows import example_uidacc_row, exmaple_empty_row
 
 
 def test_KeyError_UidAccDict_Empty(exmaple_empty_row):

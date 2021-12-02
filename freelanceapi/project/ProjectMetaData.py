@@ -1,7 +1,7 @@
 from abc import ABC, abstractproperty
 
 
-class HwmMetaData(ABC):
+class ProjectMetaData(ABC):
 
     @abstractproperty
     def get_keys(self):
@@ -12,14 +12,14 @@ class HwmMetaData(ABC):
         pass
 
 
-class Hw2Blob(HwmMetaData):
-    expected_key: str = "[HW2_BLOB]"
-    keys: list[str] = ["KW", "DTMN", "QC", "DTMC"]
+class PbNode(ProjectMetaData):
+    keys: list[str] = ["KW", "?1", "FE", "DN"]
+    expected_key = "[PB:NODE]"
 
     @property
-    def get_keys(self) -> str:
+    def get_keys(self) -> list[list]:
         return self.keys
 
     @property
-    def get_expected_key(self) -> list[str]:
+    def get_expected_key(self) -> str:
         return self.expected_key

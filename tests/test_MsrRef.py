@@ -1,9 +1,9 @@
 import pytest
-
 from freelanceapi.msr.MsrDict import MsrRefDict
 from freelanceapi.msr.MsrStr import MsrRefStr
-from .ExampleRows import exmaple_empty_row, example_msrref_row
-from .ClassifyedExample import example_empty_data, example_classifyed_msrref
+
+from .ClassifyedExample import example_classifyed_msrref, example_empty_data
+from .ExampleRows import example_msrref_row, exmaple_empty_row
 
 
 def test_KeyError_MsrRefDict_Empty(exmaple_empty_row):

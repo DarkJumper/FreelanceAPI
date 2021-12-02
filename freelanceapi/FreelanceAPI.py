@@ -6,6 +6,8 @@ from .msr.MsrDict import (
 from .msr.MsrStr import (
     EamRecordStr, GwyStr, MsrRecordStr, MsrRefStr, MsrStr, ParaDataStr, ParaRefStr, PbvObjpathStr, UidAccStr
     )
+from .project.ProjectDict import PbNodeDict
+from .project.ProjectStr import PbNodeStr
 
 
 class ExportedMsrFactories:
@@ -18,7 +20,9 @@ class ExportedMsrFactories:
         "[LAD:MSR_REF]": (MsrRefDict, MsrRefStr),
         "[LAD:PARA_REF]": (ParaRefDict, ParaRefStr),
         "[EAM:RECORD]": (EamRecordDict, EamRecordStr),
-        "[PBV:OBJPATH]": (PbvObjpathDict, PbvObjpathStr)
+        "[PBV:OBJPATH]": (PbvObjpathDict, PbvObjpathStr),
+        "[HW2_BLOB]": (Hw2BlobDict, Hw2BlobStr),
+        "[PB:NODE]": (PbNodeDict, PbNodeStr)
         }
 
     def __getitem__(self, key):
@@ -38,28 +42,6 @@ class ExportedMsrFactories:
 
     def values(self):
         return self._msr_factories.values()
-
-
-class ExportedHwmFactories:
-    _hwm_factories = {"[HW2_BLOB]": (Hw2BlobDict, Hw2BlobStr)}
-
-    def __getitem__(self, key):
-        return self._hwm_factories[key]
-
-    def __repr__(self):
-        return repr(self._hwm_factories)
-
-    def __len__(self):
-        return len(self._hwm_factories)
-
-    def copy(self):
-        return self._hwm_factories.copy()
-
-    def keys(self):
-        return self._hwm_factories.keys()
-
-    def values(self):
-        return self._hwm_factories.values()
 
 
 def read_msr_row(listed_data: str, sep: str = ";") -> tuple[MsrDict, MsrStr]:

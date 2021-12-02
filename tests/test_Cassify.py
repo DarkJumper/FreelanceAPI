@@ -1,8 +1,8 @@
 import pytest
-
-from freelanceapi.utils.Classify import Classify, dict_with_value_as_list, dict_zip_data, tuple_of_decode_ascii_code
-from .ExampleRows import example_paradata_row, example_msrrecord_row, exmaple_hw2blob_row
+from freelanceapi.utils.Classify import (Classify, dict_with_value_as_list, dict_zip_data, tuple_of_decode_ascii_code)
 from freelanceapi.utils.Exceptions import KeysDoNotMatchLength
+
+from .ExampleRows import (example_msrrecord_row, example_paradata_row, exmaple_hw2blob_row)
 
 
 def test_empty_dict_with_value_as_list():

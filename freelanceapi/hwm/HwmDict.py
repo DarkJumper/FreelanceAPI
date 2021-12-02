@@ -1,7 +1,7 @@
 from typing import Dict, Protocol, Tuple
 
+from ..utils.Classify import (Classify, dict_zip_data, tuple_of_decode_ascii_code)
 from .HwmMetaData import Hw2Blob
-from ..utils.Classify import Classify, dict_zip_data, tuple_of_decode_ascii_code
 
 
 class HwmDict(Protocol):

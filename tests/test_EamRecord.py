@@ -1,9 +1,9 @@
 import pytest
-
 from freelanceapi.msr.MsrDict import EamRecordDict
 from freelanceapi.msr.MsrStr import EamRecordStr
-from .ExampleRows import exmaple_empty_row, example_eamrecord_row
-from .ClassifyedExample import example_empty_data, example_classifyed_eamrecord
+
+from .ClassifyedExample import example_classifyed_eamrecord, example_empty_data
+from .ExampleRows import example_eamrecord_row, exmaple_empty_row
 
 
 def test_KeyError_EamRecordDict_Empty(exmaple_empty_row):

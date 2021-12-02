@@ -1,5 +1,10 @@
-from freelanceapi.utils.Create import Create, create_string_from_dict_with_dict, create_string_from_dict_with_string, create_ascii_hex
-from .ClassifyedExample import example_classifyed_paradata, example_classifyed_msrrecord, example_empty_data, example_classifyed_hw2blob
+from freelanceapi.utils.Create import (
+    Create, create_ascii_hex, create_string_from_dict_with_dict, create_string_from_dict_with_string
+    )
+
+from .ClassifyedExample import (
+    example_classifyed_hw2blob, example_classifyed_msrrecord, example_classifyed_paradata, example_empty_data
+    )
 
 
 def test_create_string_from_dict_with_dict(example_classifyed_paradata, example_empty_data):

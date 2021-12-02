@@ -1,9 +1,9 @@
 import pytest
-
 from freelanceapi.msr.MsrDict import ParaDataDict
 from freelanceapi.msr.MsrStr import ParaDataStr
-from .ExampleRows import exmaple_empty_row, example_paradata_row
-from .ClassifyedExample import example_empty_data, example_classifyed_paradata
+
+from .ClassifyedExample import example_classifyed_paradata, example_empty_data
+from .ExampleRows import example_paradata_row, exmaple_empty_row
 
 
 def test_KeyError_ParaDataDict_Empty(exmaple_empty_row):

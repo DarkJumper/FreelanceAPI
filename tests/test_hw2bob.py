@@ -1,9 +1,9 @@
 import pytest
-
 from freelanceapi.hwm.HwmDict import Hw2BlobDict
 from freelanceapi.hwm.HwmStr import Hw2BlobStr
+
+from .ClassifyedExample import example_classifyed_hw2blob, example_empty_data
 from .ExampleRows import exmaple_empty_row, exmaple_hw2blob_row
-from .ClassifyedExample import example_empty_data, example_classifyed_hw2blob
 
 
 def test_KeyError_Hw2BlobDict_Empty(exmaple_empty_row):

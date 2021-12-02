@@ -1,7 +1,7 @@
-from typing import Protocol, Dict, Optional
+from typing import Dict, Optional, Protocol
 
-from .MsrMetaData import EamRecord, MsrRecord, MsrRef, ParaData, ParaRef, PbvObjpath, UidAcc, Gwy
-from ..utils.Create import Create, create_string_from_dict_with_dict, create_string_from_dict_with_string
+from ..utils.Create import (Create, create_string_from_dict_with_dict, create_string_from_dict_with_string)
+from .MsrMetaData import (EamRecord, Gwy, MsrRecord, MsrRef, ParaData, ParaRef, PbvObjpath, UidAcc)
 
 
 class MsrStr(Protocol):

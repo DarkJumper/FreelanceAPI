@@ -1,9 +1,9 @@
 import pytest
-
 from freelanceapi.msr.MsrDict import PbvObjpathDict
 from freelanceapi.msr.MsrStr import PbvObjpathStr
-from .ExampleRows import exmaple_empty_row, example_pbvobjpath_row
-from .ClassifyedExample import example_empty_data, example_classifyed_pbvobjpath
+
+from .ClassifyedExample import (example_classifyed_pbvobjpath, example_empty_data)
+from .ExampleRows import example_pbvobjpath_row, exmaple_empty_row
 
 
 def test_KeyError_PbvObjpathDict_Empty(exmaple_empty_row):

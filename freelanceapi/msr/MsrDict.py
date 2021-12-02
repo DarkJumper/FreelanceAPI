@@ -1,7 +1,7 @@
-from typing import Dict, Protocol, Optional
+from typing import Dict, Optional, Protocol
 
-from .MsrMetaData import EamRecord, MsrRecord, MsrRef, ParaData, ParaRef, PbvObjpath, UidAcc, Gwy
 from ..utils.Classify import Classify, dict_with_value_as_list, dict_zip_data
+from .MsrMetaData import (EamRecord, Gwy, MsrRecord, MsrRef, ParaData, ParaRef, PbvObjpath, UidAcc)
 
 
 class MsrDict(Protocol):

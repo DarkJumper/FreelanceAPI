@@ -1,9 +1,9 @@
 import pytest
-
 from freelanceapi.msr.MsrDict import MsrRecordDict
 from freelanceapi.msr.MsrStr import MsrRecordStr
-from .ExampleRows import exmaple_empty_row, example_msrrecord_row
-from .ClassifyedExample import example_empty_data, example_classifyed_msrrecord
+
+from .ClassifyedExample import example_classifyed_msrrecord, example_empty_data
+from .ExampleRows import example_msrrecord_row, exmaple_empty_row
 
 
 def test_KeyError_MsrRecordDict_Empty(exmaple_empty_row):

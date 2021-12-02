@@ -1,5 +1,6 @@
-import pytest
 from collections import defaultdict
+
+import pytest
 
 
 @pytest.fixture
@@ -325,3 +326,8 @@ def example_classifyed_hw2blob():
             'Unit_Diag_Bit(15) = "Redundant cable B error"'
             )
         }
+
+
+@pytest.fixture
+def example_classifyed_pbnode():
+    return {'KW': '[PB:NODE]', '?1': '1', 'FE': 'DIGBLT', 'DN': 'AM_KFO'}

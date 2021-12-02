@@ -1,9 +1,9 @@
 import pytest
-
 from freelanceapi.msr.MsrDict import GwyDict
 from freelanceapi.msr.MsrStr import GwyStr
-from .ExampleRows import exmaple_empty_row, example_gwy_row
-from .ClassifyedExample import example_empty_data, example_classifyed_gwy
+
+from .ClassifyedExample import example_classifyed_gwy, example_empty_data
+from .ExampleRows import example_gwy_row, exmaple_empty_row
 
 
 def test_KeyError_GwyDict_Empty(exmaple_empty_row):
