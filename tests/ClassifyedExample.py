@@ -12,19 +12,19 @@ def example_empty_data():
 def example_classifyed_msrrecord():
     return {
         'KW': '[MSR:RECORD]',
-        'LEN': '1',
+        'NA': '1',
         'MN': 'M1234',
-        'LIB': 'BST_LIB_MSR',
-        'BT': 'M_BIN',
-        'KT': 'kurztext',
+        'LB': 'BST_LIB_MSR',
+        'MT': 'M_BIN',
+        'ST': 'kurztext',
         'LT': 'Langtext',
         '?0': '',
-        'PA': '128',
-        'ST': '1',
+        'AD': '128',
+        'SB': '1',
         '?1': '',
         '?2': '',
         '?3': '',
-        'END': '2'
+        '?4': '2'
         }
 
 
@@ -264,7 +264,7 @@ def example_classifyed_uidacc():
 def example_classifyed_eamrecord():
     return {
         'KW': '[EAM:RECORD]',
-        'LEN': '1',
+        'NA': '1',
         'VN': '54321_IN1',
         '?0': '0',
         'DT': 'INT',
@@ -281,12 +281,12 @@ def example_classifyed_msrref():
 
 @pytest.fixture
 def example_classifyed_pararef():
-    return {'KW': '[LAD:PARA_REF]', 'VN': '0.1', 'DT': 'REAL', '?0': '0', 'PI': '0', 'END': '1'}
+    return {'KW': '[LAD:PARA_REF]', 'VN': '0.1', 'DT': 'REAL', '?0': '0', 'PI': '0', 'VC': '1'}
 
 
 @pytest.fixture
 def example_classifyed_pbvobjpath():
-    return {'KW': '[PBV:OBJPATH]', 'LEN': '1', 'LB': 'FBSLBLT', 'FN': 'Standart'}
+    return {'KW': '[PBV:OBJPATH]', 'NA': '1', 'LB': 'FBSLBLT', 'FN': 'Standart'}
 
 
 @pytest.fixture
@@ -330,4 +330,4 @@ def example_classifyed_hw2blob():
 
 @pytest.fixture
 def example_classifyed_pbnode():
-    return {'KW': '[PB:NODE]', '?1': '1', 'FE': 'DIGBLT', 'DN': 'AM_KFO'}
+    return {'KW': '[PB:NODE]', 'NA': '1', 'MT': 'DIGBLT', 'FN': 'AM_KFO'}

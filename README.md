@@ -6,4 +6,27 @@
 
 With the Freelance API an export file from the ABB Freelance control system can be evaluated.
 
-## It Prodis:
+## It provides:
+
+Meanings of the Dict Keys:
+- KW: Key Word
+- LEN: Length of Dataset
+- NA: Next element available
+- MN: Measuring point name
+- MT: Module Type
+- ST: Short Text
+- LT: Long Text
+- AD: Area Definition
+- SB: Status Bit
+- VN: Variable Name
+- DT: Data Typ
+- VT: Variable Text
+- PI: Process image
+- EX: Exported Variable
+- VC: Variable(0) or Const (1)
+- FB: FBS Name
+- LB: Libary
+- DTMN: DTM Number
+- DTMC: DTM Config
+- QC: Quantity counter
+- FN: Function Name

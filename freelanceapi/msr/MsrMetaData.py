@@ -13,7 +13,7 @@ class MsrMetaData(ABC):
 
 
 class MsrRecord(MsrMetaData):
-    keys: list[str] = ["KW", "LEN", "MN", "LIB", "BT", "KT", "LT", "?0", "PA", "ST", "?1", "?2", "?3", 'END']
+    keys: list[str] = ["KW", "NA", "MN", "LB", "MT", "ST", "LT", "?0", "AD", "SB", "?1", "?2", "?3", "?4"]
     expected_key = "[MSR:RECORD]"
 
     @property
@@ -26,7 +26,7 @@ class MsrRecord(MsrMetaData):
 
 
 class EamRecord(MsrMetaData):
-    keys: list[str] = ["KW", "LEN", "VN", "?0", "DT", "VT", "PI", 'EX']
+    keys: list[str] = ["KW", "NA", "VN", "?0", "DT", "VT", "PI", 'EX']
     expected_key: str = "[EAM:RECORD]"
 
     @property
@@ -39,7 +39,7 @@ class EamRecord(MsrMetaData):
 
 
 class PbvObjpath(MsrMetaData):
-    keys: list[str] = ["KW", "LEN", "LB", "FN"]
+    keys: list[str] = ["KW", "NA", "LB", "FN"]
     expected_key = "[PBV:OBJPATH]"
 
     @property
@@ -65,7 +65,7 @@ class MsrRef(MsrMetaData):
 
 
 class ParaRef(MsrMetaData):
-    keys: list[str] = ["KW", "VN", "DT", "?0", "PI", "END"]
+    keys: list[str] = ["KW", "VN", "DT", "?0", "PI", "VC"]
     expected_key = "[LAD:PARA_REF]"
 
     @property

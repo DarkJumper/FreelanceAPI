@@ -13,7 +13,7 @@ class ProjectMetaData(ABC):
 
 
 class PbNode(ProjectMetaData):
-    keys: list[str] = ["KW", "?1", "FE", "DN"]
+    keys: list[str] = ["KW", "NA", "MT", "FN"]
     expected_key = "[PB:NODE]"
 
     @property
