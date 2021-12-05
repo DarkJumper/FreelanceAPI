@@ -50,7 +50,7 @@ class PbNodeDict(ProjectDict):
         merge_dict Merge data for Dataprocessing.
 
         Returns:
-            Dict: A MsrDict separated by the predefined separator
+            Dict: A ProjectDict separated by the predefined separator
         """
         data_as_dict = {}
         classify = Classify(self._splitted_data)

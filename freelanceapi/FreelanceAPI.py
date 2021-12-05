@@ -1,5 +1,5 @@
-from .hwm.HwmDict import Hw2BlobDict, HwmDict
-from .hwm.HwmStr import Hw2BlobStr, HwmStr
+from .hwm.HwmDict import Hw2BlobDict, HwmDict, BeginIODescriptionDict
+from .hwm.HwmStr import Hw2BlobStr, HwmStr, BeginIODescriptionStr
 from .msr.MsrDict import (
     EamRecordDict, GwyDict, MsrDict, MsrRecordDict, MsrRefDict, ParaDataDict, ParaRefDict, PbvObjpathDict, UidAccDict
     )
@@ -22,7 +22,8 @@ class ExportedFreelanceFactories:
         "[EAM:RECORD]": (EamRecordDict, EamRecordStr),
         "[PBV:OBJPATH]": (PbvObjpathDict, PbvObjpathStr),
         "[HW2_BLOB]": (Hw2BlobDict, Hw2BlobStr),
-        "[PB:NODE]": (PbNodeDict, PbNodeStr)
+        "[PB:NODE]": (PbNodeDict, PbNodeStr),
+        "[BEGIN_IODESCRIPTION]": (BeginIODescriptionDict, BeginIODescriptionStr)
         }
 
     def __getitem__(self, key):

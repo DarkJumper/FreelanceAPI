@@ -52,7 +52,7 @@ class PbNodeStr(ProjectStr):
         merge_string Merge data for Dataprocessing.
 
         Returns:
-            str: composed MsrString with the previously defined seperator
+            str: composed ProjectString with the previously defined seperator
         """
         created_string = Create(self._dataset)
         return created_string.string(create_string_from_dict_with_string(sep=self._sep))

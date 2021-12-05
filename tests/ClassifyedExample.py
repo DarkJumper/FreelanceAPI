@@ -331,3 +331,26 @@ def example_classifyed_hw2blob():
 @pytest.fixture
 def example_classifyed_pbnode():
     return {'KW': '[PB:NODE]', 'NA': '1', 'MT': 'DIGBLT', 'FN': 'AM_KFO'}
+
+
+@pytest.fixture
+def example_classifyed_beginiodescritpion():
+    return {
+        'KW': '[BEGIN_IODESCRIPTION]',
+        'CN': 'M1_IN_Kanal_01',
+        'IO': '0',
+        'DT': '0',
+        'UB': '2',
+        'B': '0',
+        'BL': '1',
+        'VN': 'X110001_IN',
+        'C': '',
+        '?1': '2',
+        '?2': '2',
+        '?3': '205',
+        '?4': '1',
+        '?5': '254',
+        '?6': '68',
+        '?7': '241181488',
+        '?8': '1424956'
+        }

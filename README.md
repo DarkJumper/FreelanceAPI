@@ -30,3 +30,13 @@ Meanings of the Dict Keys:
 - DTMC: DTM Config
 - QC: Quantity counter
 - FN: Function Name
+- CN: Channel Name
+- IO: Input or Output
+- UB: Used Byte
+- B: Bit
+- BL: Byte Length
+- C: Commend
+
+## :warning: Developer Info
+
+All keys that contain a ? cannot be assigned to a function.
