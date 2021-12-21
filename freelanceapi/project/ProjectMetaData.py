@@ -23,3 +23,16 @@ class PbNode(ProjectMetaData):
     @property
     def get_expected_key(self) -> str:
         return self.expected_key
+
+
+class Area(ProjectMetaData):
+    keys: list[str] = ["KW", "NA", "AC", "LA", "AN"]
+    expected_key = "[AREA]"
+
+    @property
+    def get_keys(self) -> list[list]:
+        return self.keys
+
+    @property
+    def get_expected_key(self) -> str:
+        return self.expected_key

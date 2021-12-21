@@ -36,6 +36,9 @@ Meanings of the Dict Keys:
 - B: Bit
 - BL: Byte Length
 - C: Commend
+- AC: Area Char
+- LA: Length of Area Text
+- AN: Area Name
 
 ## :warning: Developer Info
 

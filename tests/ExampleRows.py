@@ -59,3 +59,8 @@ def exmaple_pbnode_row():
 @pytest.fixture
 def example_beginiodescription_row():
     return "[BEGIN_IODESCRIPTION];M1_IN_Kanal_01;0;0;2;0;1;X110001_IN;;2;2;205;1;254;68;241181488;1424956"
+
+
+@pytest.fixture
+def example_area_row():
+    return "[AREA];1;!;13;Systembereich"

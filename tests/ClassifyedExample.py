@@ -354,3 +354,8 @@ def example_classifyed_beginiodescritpion():
         '?7': '241181488',
         '?8': '1424956'
         }
+
+
+@pytest.fixture
+def example_classifyed_area():
+    return {"KW": "[AREA]", "NA": "1", "AC": "!", "LA": "13", "AN": "Systembereich"}
