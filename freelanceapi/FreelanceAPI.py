@@ -1,54 +1,38 @@
-from .hwm.HwmDict import BeginIODescriptionDict, Hw2BlobDict, HwmDict
-from .hwm.HwmStr import BeginIODescriptionStr, Hw2BlobStr, HwmStr
-from .msr.MsrDict import (
-    EamRecordDict, GwyDict, MsrDict, MsrRecordDict, MsrRefDict, ParaDataDict, ParaRefDict, PbvObjpathDict, UidAccDict
-    )
-from .msr.MsrStr import (
-    EamRecordStr, GwyStr, MsrRecordStr, MsrRefStr, MsrStr, ParaDataStr, ParaRefStr, PbvObjpathStr, UidAccStr
-    )
-from .project.ProjectDict import AreaDict, PbNodeDict
-from .project.ProjectStr import AreaStr, PbNodeStr
+import io
+from contextlib import contextmanager
+
+from ._FreelanceFactories import ExportedFreelanceFactories
+from .sections import Section
 
 
-class ExportedFreelanceFactories:
-    _msr_factories = {
-        "[PARA:PARADATA]": (ParaDataDict, ParaDataStr),
-        "[UID:ACCMSR]'": (UidAccDict, UidAccStr),
-        "[GWY:ACCEAM]": (GwyDict, GwyStr),
-        "[GWY:ACCMSR]": (GwyDict, GwyStr),
-        "[MSR:RECORD]": (MsrRecordDict, MsrRecordStr),
-        "[LAD:MSR_REF]": (MsrRefDict, MsrRefStr),
-        "[LAD:PARA_REF]": (ParaRefDict, ParaRefStr),
-        "[EAM:RECORD]": (EamRecordDict, EamRecordStr),
-        "[PBV:OBJPATH]": (PbvObjpathDict, PbvObjpathStr),
-        "[HW2_BLOB]": (Hw2BlobDict, Hw2BlobStr),
-        "[PB:NODE]": (PbNodeDict, PbNodeStr),
-        "[BEGIN_IODESCRIPTION]": (BeginIODescriptionDict, BeginIODescriptionStr),
-        "[AREA]": (AreaDict, AreaStr)
-        }
-
-    def __getitem__(self, key):
-        return self._msr_factories[key]
-
-    def __repr__(self):
-        return repr(self._msr_factories)
-
-    def __len__(self):
-        return len(self._msr_factories)
-
-    def copy(self):
-        return self._msr_factories.copy()
-
-    def keys(self):
-        return self._msr_factories.keys()
-
-    def values(self):
-        return self._msr_factories.values()
-
-
-def read_freelance_row(listed_data: str, sep: str = ";") -> tuple:
+@contextmanager
+def read_export_file(file_name: str, file_suffix: str) -> tuple[str]:
     """
-    read_msr_row Matching instances to the key word are searched for and returned accordingly.
+    read_export_file [Freelance export file is read and output as tuple.
+    The file extension of the export file must be specified to ensure that the correct form can be returned.]
+
+    Args:
+        file_name (str): [path of the file]
+        file_suffix (str): [ending of the file to be read]
+
+    Raises:
+        AttributeError: [File type cannot be read]
+
+    Yields:
+        Iterator[tuple[str]]: [Filedata are summarized in tuples]
+    """
+    if file_suffix.lower() != "csv":
+        raise AttributeError(f'{file_suffix} is not supported')
+    TextWrapper = open(file_name, "r", newline='', encoding='utf-16')
+    try:
+        yield tuple(row.strip() for row in TextWrapper)
+    finally:
+        TextWrapper.close()
+
+
+def evaluate_row(listed_data: str, sep: str = ";") -> tuple[dict, str]:
+    """
+    evaluate_row Matching instances to the key word are searched for and returned accordingly.
 
     Args:
         listed_data (str): An exported row of freelance is required. These must contain a key word. Key words are predefined.
@@ -67,3 +51,28 @@ def read_freelance_row(listed_data: str, sep: str = ";") -> tuple:
         raise KeyError(f"unknown keyword in line: {key_word}.")
     (dict_class, string_class) = find_msr_factory_tuple[key_word]
     return (dict_class(), string_class())
+
+
+def get_sections(file_data: read_export_file, section: Section) -> tuple[tuple[str]]:
+    """
+    get_sections [The different areas in the export file are searched for and output.]
+
+    Args:
+        file_data (read_export_file): [the data evaluated by the context manager must be transferred.]
+        section (Section): [The desired subrange from the export file must be specified.]
+
+    Returns:
+        tuple[tuple[str]]: [The selected part will be output from the file.It is always a tuple within a tuple. So that all data is passed even if the section occurs more often in the file.]
+    """
+    list_of_sections = []
+    found_key = False
+    for element in file_data:
+        if found_key:
+            section_list.append(element)
+        if section().get_begin_of_section() in element:
+            found_key = True
+            section_list = [element]
+        if section().get_end_of_section() in element:
+            list_of_sections.append(tuple(section_list))
+            found_key = False
+    return tuple(list_of_sections)

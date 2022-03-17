@@ -6,6 +6,46 @@
 
 With the Freelance API an export file from the ABB Freelance control system can be evaluated.
 
+
+## Functions:
+
+ContextManger:
+- read_export_file: For now it can only evaluate the CSV export file
+- get_sections: All ranges from the csv file can be output directly.
+
+This is how it is done:
+
+```
+from freelanceapi import get_sections, read_export_file
+from freelanceapi.sections import HW2
+
+
+with read_export_file("freelance_export_csv.csv", "csv") as file:
+    section_data = get_sections(file, section=HW2) 
+    print(section_data)
+    output =>......
+```
+
+In this example, the complete range of field IO is output.
+
+The following sections can be read out:
+- ProjectComment:
+- AreaDefinition:
+- ProjectHeader:
+- ResourceAssociation:
+- HardWareManager:
+- HW2:
+- OPCConn:
+- Conn:
+- HDTextList:
+- HD:
+- MSR:
+- OPCAdress:
+- EAMInit:
+- EAM:
+- Node:
+- Pbaum:
+
 ## It provides:
 
 Meanings of the Dict Keys:
@@ -43,3 +83,4 @@ Meanings of the Dict Keys:
 ## :warning: Developer Info
 
 All keys that contain a ? cannot be assigned to a function.
+
