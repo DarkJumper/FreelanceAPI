@@ -66,6 +66,7 @@ def get_sections(file_data: read_export_file, section: Section) -> tuple[tuple[s
     """
     list_of_sections = []
     found_key = False
+    section_list = []
     for element in file_data:
         if found_key:
             section_list.append(element)
