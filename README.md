@@ -84,3 +84,89 @@ Meanings of the Dict Keys:
 
 All keys that contain a ? cannot be assigned to a function.
 
+
+## Freelance Reader
+
+The ```FreelanceReader``` is a context manager. Depending on the file extension it returns the correct object
+:warning: Only certain file endings are evaluated
+- PLC
+- PLE
+- CSV
+
+### FreelanceReader
+
+```
+from freelanceapi import FreelanceReader
+
+with FreelanceReader("/User/test.csv") as file:
+    print(file)
+
+output >> freelanceapi.FreelanceExportData.FreelanceCsvData object at 0x10e13eac0
+```
+
+
+### Freelande Reader UML
+```mermaid
+classDiagram
+    class FreelanceReader  {
+        <<Context Manager>>
+    }
+    FreelanceReader --|> FreelanceExportdata
+```
+
+## Freelance Exports
+The Freelance Export class supports the functions.
+
+## complete_file
+The data of the complete file is returned as a tuple.
+```
+from freelanceapi import FreelanceReader
+
+with FreelanceReader("/User/test.csv") as file:
+    print(file.complete_file())
+
+output >> (([Program-Generated File -- DO NOT MODIFY],),([DUMP_VERSION],2061,),([DUMP_FILETYPE],101,)......)
+```
+
+## extract_sections
+The desired range must be specified as a string. Then the selected range is output as a tuple.
+If a section occurs more than once in the file, it is expanded in the tuple.
+```
+from freelanceapi import FreelanceReader
+
+with FreelanceReader("/User/test.csv") as file:
+    print(file.extract_sections("Project Comment"))
+    
+output >> (('[BEGIN_PROJECTCOMMENT];0;',),)
+```
+The following areas are available for selection:
+- Project Comment
+- Node
+- HW2
+- Area
+- Header
+- Resorce Association
+- Hardware Manager
+- Hardware
+- OPC Connection
+- Connections
+- HD Text
+- HD
+- MSR
+- OPC Adressing
+- EAM Initialisation
+- EAM
+- Project Tree
+
+### Freelance Export UML
+```mermaid
+classDiagram
+    class FreelanceExportData  {
+        <<abstract>>
+        +complete_file()
+        +extract_sections(section)
+    }
+    FreelanceCsvData --|> FreelanceExportData
+    FreelancePlcData --|> FreelanceExportData
+    FreelancePleData --|> FreelanceExportData
+```

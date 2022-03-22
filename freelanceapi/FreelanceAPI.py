@@ -2,7 +2,7 @@ import io
 from contextlib import contextmanager
 
 from ._FreelanceFactories import ExportedFreelanceFactories
-from .sections import Section
+from .sections.sections import Section
 
 
 @contextmanager
