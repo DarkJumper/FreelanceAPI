@@ -85,6 +85,9 @@ Meanings of the Dict Keys:
 All keys that contain a ? cannot be assigned to a function.
 
 
+## NEW Version!!! not Testet yet.
+
+
 ## Freelance Reader
 
 The ```FreelanceReader``` is a context manager. Depending on the file extension it returns the correct object
@@ -102,16 +105,6 @@ with FreelanceReader("/User/test.csv") as file:
     print(file)
 
 output >> freelanceapi.FreelanceExportData.FreelanceCsvData object at 0x10e13eac0
-```
-
-
-### Freelande Reader UML
-```mermaid
-classDiagram
-    class FreelanceReader  {
-        <<Context Manager>>
-    }
-    FreelanceReader --|> FreelanceExportdata
 ```
 
 ## Freelance Exports
@@ -163,10 +156,16 @@ The following areas are available for selection:
 classDiagram
     class FreelanceExportData  {
         <<abstract>>
+        +file_data: tuple[str]
         +complete_file()
         +extract_sections(section)
     }
-    FreelanceCsvData --|> FreelanceExportData
-    FreelancePlcData --|> FreelanceExportData
-    FreelancePleData --|> FreelanceExportData
+    
+    class FreelanceReader  {
+        <<context manager>>
+    }
+    FreelanceReader o-- FreelanceExportData : creates
+    FreelanceExportData <|-- FreelancePlcData
+    FreelanceExportData <|-- FreelancePleData
+    FreelanceExportData <|-- FreelanceCsvData
 ```
