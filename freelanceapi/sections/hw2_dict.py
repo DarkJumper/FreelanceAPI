@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Dict, Tuple
 
 from ..utils import Classify, dict_zip_data, tuple_of_decode_ascii_code
 from .__SectionDict import __SectionDict
