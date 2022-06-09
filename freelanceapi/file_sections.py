@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
-
-from .FreelanceExportData import FreelanceReader
+from typing import Tuple
 
 
 class Section(ABC):
@@ -179,34 +178,8 @@ _CSV_SECTION_FACTORY = {
     }
 
 
-def csv_sections(section: str) -> tuple[str, str]:
+def csv_section(section: str) -> Tuple[str, str]:
     if section not in _CSV_SECTION_FACTORY.keys():
         raise KeyError(f"unknown section: {section}.")
     section_class = _CSV_SECTION_FACTORY[section]()
     return (section_class.get_begin_of_section(), section_class.get_end_of_section())
-
-
-def get_sections(file_data: FreelanceReader, section: Section) -> tuple[tuple[str]]:
-    """
-    get_sections [The different areas in the export file are searched for and output.]
-
-    Args:
-        file_data (FreelanceReader): [the data evaluated by the context manager must be transferred.]
-        section (Section): [The desired subrange from the export file must be specified.]
-
-    Returns:
-        tuple[tuple[str]]: [The selected part will be output from the file.It is always a tuple within a tuple. So that all data is passed even if the section occurs more often in the file.]
-    """
-    list_of_sections = []
-    found_key = False
-    section_list = []
-    for element in file_data:
-        if found_key:
-            section_list.append(element)
-        if section().get_begin_of_section() in element:
-            found_key = True
-            section_list = [element]
-        if section().get_end_of_section() in element:
-            list_of_sections.append(tuple(section_list))
-            found_key = False
-    return tuple(list_of_sections)
