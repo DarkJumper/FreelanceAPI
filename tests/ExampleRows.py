@@ -64,3 +64,8 @@ def example_beginiodescription_row():
 @pytest.fixture
 def example_area_row():
     return "[AREA];1;!;13;Systembereich"
+
+
+@pytest.fixture
+def example_eamres_row():
+    return "[EAM:RESOURCEASSOCIATION];1;M1234;PS19"

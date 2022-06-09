@@ -85,9 +85,9 @@ Meanings of the Dict Keys:
 All keys that contain a ? cannot be assigned to a function.
 
 
+
+
 ## NEW Version!!! not Testet yet.
-
-
 ## Freelance Reader
 
 The ```FreelanceReader``` is a context manager. Depending on the file extension it returns the correct object
@@ -110,7 +110,7 @@ output >> freelanceapi.FreelanceExportData.FreelanceCsvData object at 0x10e13eac
 ## Freelance Exports
 The Freelance Export class supports the functions.
 
-## complete_file
+### complete_file
 The data of the complete file is returned as a tuple.
 ```
 from freelanceapi import FreelanceReader
@@ -121,7 +121,7 @@ with FreelanceReader("/User/test.csv") as file:
 output >> (([Program-Generated File -- DO NOT MODIFY],),([DUMP_VERSION],2061,),([DUMP_FILETYPE],101,)......)
 ```
 
-## extract_sections
+### extract_sections
 The desired range must be specified as a string. Then the selected range is output as a tuple.
 If a section occurs more than once in the file, it is expanded in the tuple.
 ```

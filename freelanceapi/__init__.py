@@ -1,5 +1,5 @@
-from .ContextManager import FreelanceReader
-from .FreelanceAPI import evaluate_row, get_sections, read_export_file
-from .FreelanceExportData import (FreelanceCsvData, FreelancePlcData, FreelancePleData)
+from .csv_sections import get_sections
+from .FreelanceExportData import (FreelanceCsvData, FreelancePlcData, FreelancePleData, FreelanceReader)
+from .row_identificator import row_identificator
 
-__version__ = '0.1.2'
+__version__ = '0.2.0'

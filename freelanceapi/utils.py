@@ -1,18 +1,36 @@
 from typing import Callable, Dict, Tuple, Union
 
-from .Exceptions import KeysDoNotMatchLength
 
-ClassifyerStrategy = Callable[[Union[list[str], str]], Dict]
+## Exceptions
+class KeysDoNotMatchLength(Exception):
+    """
+    KeysDoNotMatch Length of Keys do not match with the dataset
+
+    Args:
+        Exception ([type]): Main Class for exceptions
+    """
+
+    def __init__(self, values: str, message: str = ""):
+        self.values = values
+        self.message = message
+        super().__init__(self.message)
+
+    def __str__(self):
+        return f'Value:{self.values}  -> Msg:{self.message}'
 
 
-def dict_with_value_as_list(secondary_keys: list[str] = [], range_of_list: int = 5) -> ClassifyerStrategy:
+## Classifyer
+ClassifyerStrategy = Callable[[Union[list[str], str]], Dict | list]
+
+
+def list_of_dict(secondary_keys: list[str] = [], range_of_list: int = 5) -> ClassifyerStrategy:
     """
     Args:
         secondary_keys(list[str], optional): a list of keys for the inner dict. normaly the list is empty.
         range_of_list (int, optional): Lists size can be modified like this. Defaults to 5.
     """
 
-    def splitted_value_as_list(dataset: list[str]) -> Dict[str, list[str]]:
+    def splitted_value_as_list(dataset: list[str]) -> list[Dict[str, list]]:
         """
         splitted_value_as_list List is divided into the defined size!
 
@@ -24,11 +42,10 @@ def dict_with_value_as_list(secondary_keys: list[str] = [], range_of_list: int =
         """
         if len(dataset) % int(range_of_list):
             raise KeysDoNotMatchLength(range_of_list, "The specified length of the list does not match the dataset!")
-        result_dict: Dict = dict()
-        for count, data in enumerate(dataset, start=0):
-            if count % range_of_list == 0:
-                result_dict[data] = dict(zip(secondary_keys, dataset[count:count + range_of_list]))
-        return result_dict
+        return [
+            dict(zip(secondary_keys, dataset[count:count + range_of_list]))
+            for count, data in enumerate(dataset, start=0) if count % range_of_list == 0
+            ]
 
     return splitted_value_as_list
 
