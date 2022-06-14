@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Callable, Dict, Tuple, Union
 
-from pydantic import BaseModel, validator
+from pydantic import BaseModel
 
 from .sections.area_dict import AreaDict
 from .sections.eam_dict import EamRecordDict
@@ -32,7 +32,7 @@ class RowIdentification(BaseModel, ABC):
 
 
 # sourcery skip: remove-duplicate-dict-key
-class MsrRef(RowIdentification):
+class MsrRec(RowIdentification):
     NA: int = None
     MN: str = None
     LB: str = None
@@ -102,7 +102,7 @@ class IoDescription(RowIdentification):
 
 
 __FREELANCE_IDENTIFICATION = {
-    "[MSR:RECORD]": (MsrRef, MsrRecordDict),
+    "[MSR:RECORD]": (MsrRec, MsrRecordDict),
     "[UID:ACCMSR]": (UidAcc, UidAccDict),
     "[PARA:PARADATA]": (ParaData, ParaDataDict),
     "[PB:NODE]": (PBNode, PbNodeDict),
@@ -123,4 +123,5 @@ def row_identificator(row: tuple[str]) -> RowIdentification:
     if row[0] not in __FREELANCE_IDENTIFICATION.keys():
         raise AttributeError('cant find identificator!')
     (id, CreateDict) = __FREELANCE_IDENTIFICATION[row[0]]
-    return CreateDict().merge_dict(row)
+    row_dict = CreateDict().merge_dict(row)
+    return id(**row_dict)

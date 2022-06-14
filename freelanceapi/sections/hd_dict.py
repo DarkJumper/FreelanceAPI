@@ -33,7 +33,7 @@ class MsrRefDict(__SectionDict):
     Raises:
         KeyError: The String was not passed with the desired key.
     """
-    __keys: list[str] = ["ID", "MN"]
+    __keys: list[str] = ["ID", "MP"]
 
     def merge_dict(self, splitted_data: list[str]) -> Dict:
         """

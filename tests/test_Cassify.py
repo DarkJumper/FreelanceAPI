@@ -1,9 +1,7 @@
 import pytest
-from freelanceapi.utils import (Classify, KeysDoNotMatchLength, dict_zip_data,
-                                list_of_dict, tuple_of_decode_ascii_code)
+from freelanceapi.utils import (Classify, KeysDoNotMatchLength, dict_zip_data, list_of_dict, tuple_of_decode_ascii_code)
 
-from .ExampleRows import (example_msrrecord_row, example_paradata_row,
-                          exmaple_hw2blob_row)
+from .ExampleRows import (example_msrrecord_row, example_paradata_row, exmaple_hw2blob_row)
 
 
 def test_empty_list_of_dict():
@@ -203,7 +201,7 @@ def test_empty_dict_zip_data():
 
 
 def test_KeysDoNotMatchLength_dict_zip_data(example_msrrecord_row):
-    keys = ["MN", "LIB", "BT", "KT", "LT", "?0", "PA", "ST", "?1", "?2", "?3", 'END']
+    keys = ["MP", "LIB", "BT", "KT", "LT", "?0", "PA", "ST", "?1", "?2", "?3", 'END']
     splitted_data = example_msrrecord_row.split(";")
     with pytest.raises(KeysDoNotMatchLength):
         classify = Classify(splitted_data)
@@ -213,13 +211,13 @@ def test_KeysDoNotMatchLength_dict_zip_data(example_msrrecord_row):
 
 
 def test_dict_with_value_as_list(example_msrrecord_row):
-    keys = ["KW", "LEN", "MN", "LIB", "BT", "KT", "LT", "?0", "PA", "ST", "?1", "?2", "?3", 'END']
+    keys = ["KW", "LEN", "MP", "LIB", "BT", "KT", "LT", "?0", "PA", "ST", "?1", "?2", "?3", 'END']
     splitted_data = example_msrrecord_row.split(";")
     classify = Classify(splitted_data)
     assert classify.execute(dict_zip_data(keys)) == {
         'KW': '[MSR:RECORD]',
         'LEN': '1',
-        'MN': 'M1234',
+        'MP': 'M1234',
         'LIB': 'BST_LIB_MSR',
         'BT': 'M_BIN',
         'KT': 'kurztext',
@@ -232,7 +230,7 @@ def test_dict_with_value_as_list(example_msrrecord_row):
         '?3': '',
         'END': '2'
         }
-    assert classify.execute(dict_zip_data(keys))["MN"] == "M1234"
+    assert classify.execute(dict_zip_data(keys))["MP"] == "M1234"
 
 
 def test_empty_tuple_of_decode_ascii_code():

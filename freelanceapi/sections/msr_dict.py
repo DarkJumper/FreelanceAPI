@@ -15,7 +15,7 @@ class MsrRecordDict(__SectionDict):
         KeyError: The String was not passed with the desired key.
     """
 
-    __keys: list[str] = ["ID", "NA", "MN", "LB", "MT", "ST", "LT", "NI1", "AD", "SB", "NI2", "NI3", "NI4", "NI5"]
+    __keys: list[str] = ["ID", "NA", "MP", "LB", "MT", "ST", "LT", "NI1", "AD", "SB", "NI2", "NI3", "NI4", "NI5"]
 
     def merge_dict(self, splitted_list: list[str]) -> Dict:
         """

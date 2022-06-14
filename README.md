@@ -115,10 +115,10 @@ The following sections can be read out:
 ## It provides:
 
 Meanings of the Dict Keys:
-- KW: Key Word
+- ID: Identification
 - LEN: Length of Dataset
 - NA: Next element available
-- MN: Measuring point name
+- MP: Measuring point
 - MT: Module Type
 - ST: Short Text
 - LT: Long Text

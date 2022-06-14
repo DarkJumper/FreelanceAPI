@@ -13,7 +13,7 @@ def example_classifyed_msrrecord():
     return {
         'ID': '[MSR:RECORD]',
         'NA': '1',
-        'MN': 'M1234',
+        'MP': 'M1234',
         'LB': 'BST_LIB_MSR',
         'MT': 'M_BIN',
         'ST': 'kurztext',
@@ -254,7 +254,7 @@ def example_classifyed_eamrecord():
 
 @pytest.fixture
 def example_classifyed_msrref():
-    return {'ID': '[LAD:MSR_REF]', 'MN': 'M54321_AIW'}
+    return {'ID': '[LAD:MSR_REF]', 'MP': 'M54321_AIW'}
 
 
 @pytest.fixture
@@ -271,7 +271,7 @@ def example_classifyed_pbvobjpath():
 def example_classifyed_gwy():
     return {
         'ID': '[GWY:ACCEAM]',
-        'MN': '54321_AUF',
+        'MP': '54321_AUF',
         'LEN': '1',
         'PARA': [{
             'GN': 'T164',
