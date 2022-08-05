@@ -116,6 +116,7 @@ The following sections can be read out:
 
 Meanings of the Dict Keys:
 - ID: Identification
+- RID: Row Identification
 - LEN: Length of Dataset
 - NA: Next element available
 - MP: Measuring point

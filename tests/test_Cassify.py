@@ -1,6 +1,7 @@
 import pytest
 from freelanceapi.utils import (Classify, KeysDoNotMatchLength, dict_zip_data, list_of_dict, tuple_of_decode_ascii_code)
 
+from .ClassifyedExample import example_classifyed_paradata
 from .ExampleRows import (example_msrrecord_row, example_paradata_row, exmaple_hw2blob_row)
 
 
@@ -23,174 +24,29 @@ def test_list_of_dict(example_paradata_row):
     classify = Classify(parameter)
     assert classify.execute(list_of_dict(["KN", "L1", "K1", "L2", "K2"], 5)) == [
         {
-            'KN': 'OScan',
-            'L1': '5',
-            'K1': 'CHECK',
+            'KN': 'QUIT1',
+            'L1': '11',
+            'K1': 'CONFIRMFORM',
             'L2': '1',
-            'K2': 'j'
+            'K2': '1'
             }, {
-                'KN': 'Bt0',
-                'L1': '5',
-                'K1': 'MTEXT',
-                'L2': '7',
-                'K2': 'STÖRUNG'
+                'KN': 'QUIT2',
+                'L1': '11',
+                'K1': 'CONFIRMFORM',
+                'L2': '1',
+                'K2': '1'
                 }, {
-                    'KN': 'Bt1',
-                    'L1': '5',
-                    'K1': 'MTEXT',
-                    'L2': '6',
-                    'K2': 'BEREIT'
+                    'KN': 'QUIT3',
+                    'L1': '11',
+                    'K1': 'CONFIRMFORM',
+                    'L2': '1',
+                    'K2': '2'
                     }, {
-                        'KN': 'Mon',
-                        'L1': '5',
-                        'K1': 'CHECK',
+                        'KN': 'QUIT4',
+                        'L1': '11',
+                        'K1': 'CONFIRMFORM',
                         'L2': '1',
-                        'K2': 'j'
-                        }, {
-                            'KN': 'Mp',
-                            'L1': '5',
-                            'K1': 'MPRIO',
-                            'L2': '1',
-                            'K2': '2'
-                            }, {
-                                'KN': 'Mt',
-                                'L1': '5',
-                                'K1': 'MTEXT',
-                                'L2': '6',
-                                'K2': 'BEREIT'
-                                }, {
-                                    'KN': 'Wav1',
-                                    'L1': '5',
-                                    'K1': 'HTEXT',
-                                    'L2': '0',
-                                    'K2': ''
-                                    }, {
-                                        'KN': 'Gt',
-                                        'L1': '13',
-                                        'K1': 'CUSTSELLIST_2',
-                                        'L2': '1',
-                                        'K2': '0'
-                                        }, {
-                                            'KN': 'Ast',
-                                            'L1': '5',
-                                            'K1': 'ASTAT',
-                                            'L2': '0',
-                                            'K2': ''
-                                            }, {
-                                                'KN': 'Ht1',
-                                                'L1': '5',
-                                                'K1': 'HTEXT',
-                                                'L2': '0',
-                                                'K2': ''
-                                                }, {
-                                                    'KN': 'Bz',
-                                                    'L1': '3',
-                                                    'K1': 'BZO',
-                                                    'L2': '0',
-                                                    'K2': ''
-                                                    }, {
-                                                        'KN': 'BEDSEL',
-                                                        'L1': '5',
-                                                        'K1': 'CHECK',
-                                                        'L2': '0',
-                                                        'K2': ''
-                                                        }, {
-                                                            'KN': 'ChgShw',
-                                                            'L1': '5',
-                                                            'K1': 'CHECK',
-                                                            'L2': '0',
-                                                            'K2': ''
-                                                            }, {
-                                                                'KN': 'Alex0',
-                                                                'L1': '5',
-                                                                'K1': 'CHECK',
-                                                                'L2': '0',
-                                                                'K2': ''
-                                                                }, {
-                                                                    'KN': 'Alq0',
-                                                                    'L1': '5',
-                                                                    'K1': 'CHECK',
-                                                                    'L2': '0',
-                                                                    'K2': ''
-                                                                    }, {
-                                                                        'KN': 'Alex1',
-                                                                        'L1': '5',
-                                                                        'K1': 'CHECK',
-                                                                        'L2': '0',
-                                                                        'K2': ''
-                                                                        }, {
-                                                                            'KN': 'Alq1',
-                                                                            'L1': '5',
-                                                                            'K1': 'CHECK',
-                                                                            'L2': '0',
-                                                                            'K2': ''
-                                                                            }, {
-                                                                                'KN': 'Lmz',
-                                                                                'L1': '5',
-                                                                                'K1': 'CHECK',
-                                                                                'L2': '0',
-                                                                                'K2': ''
-                                                                                }, {
-                                                                                    'KN': 'Aval',
-                                                                                    'L1': '5',
-                                                                                    'K1': 'CHECK',
-                                                                                    'L2': '0',
-                                                                                    'K2': ''
-                                                                                    }, {
-                                                                                        'KN': 'Init',
-                                                                                        'L1': '5',
-                                                                                        'K1': 'CHECK',
-                                                                                        'L2': '0',
-                                                                                        'K2': ''
-                                                                                        }, {
-                                                                                            'KN': 'Acnt',
-                                                                                            'L1': '4',
-                                                                                            'K1': 'WORD',
-                                                                                            'L2': '0',
-                                                                                            'K2': ''
-                                                                                            }, {
-                                                                                                'KN': 'Align',
-                                                                                                'L1': '4',
-                                                                                                'K1': 'WORD',
-                                                                                                'L2': '0',
-                                                                                                'K2': ''
-                                                                                                }, {
-                                                                                                    'KN': 'ATt1',
-                                                                                                    'L1': '7',
-                                                                                                    'K1': 'DMSTIME',
-                                                                                                    'L2': '0',
-                                                                                                    'K2': ''
-                                                                                                    }, {
-                                                                                                        'KN': 'ITt1',
-                                                                                                        'L1': '7',
-                                                                                                        'K1': 'DMSTIME',
-                                                                                                        'L2': '0',
-                                                                                                        'K2': ''
-                                                                                                        },
-        {
-            'KN': 'CAst1',
-            'L1': '4',
-            'K1': 'BYTE',
-            'L2': '0',
-            'K2': ''
-            }, {
-                'KN': 'OAst1',
-                'L1': '4',
-                'K1': 'BYTE',
-                'L2': '0',
-                'K2': ''
-                }, {
-                    'KN': 'Nlst1',
-                    'L1': '4',
-                    'K1': 'BYTE',
-                    'L2': '0',
-                    'K2': ''
-                    }, {
-                        'KN': 'Align1',
-                        'L1': '4',
-                        'K1': 'BYTE',
-                        'L2': '0',
-                        'K2': ''
+                        'K2': '2'
                         }
         ]
 

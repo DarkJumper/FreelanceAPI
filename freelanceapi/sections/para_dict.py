@@ -25,4 +25,5 @@ class ParaDataDict(__SectionDict):
         data_as_dict["ID"], data_as_dict["LEN"], *parameter = splitted_data
         classify = Classify(parameter)
         data_as_dict["PARA"] = classify.execute(list_of_dict(self.__keys, self.__secondary_dict_len))
+        print(data_as_dict["PARA"])
         return data_as_dict

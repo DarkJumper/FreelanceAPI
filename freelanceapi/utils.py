@@ -1,4 +1,4 @@
-from typing import Callable, Dict, Tuple, Union
+from typing import Callable, Dict, List, Optional, Tuple, Union
 
 
 ## Exceptions
@@ -23,12 +23,14 @@ class KeysDoNotMatchLength(Exception):
 ClassifyerStrategy = Callable[[Union[list[str], str]], Dict | list]
 
 
-def list_of_dict(secondary_keys: list[str] = [], range_of_list: int = 5) -> ClassifyerStrategy:
+def list_of_dict(secondary_keys: list[str] = None, range_of_list: int = 5) -> ClassifyerStrategy:
     """
     Args:
         secondary_keys(list[str], optional): a list of keys for the inner dict. normaly the list is empty.
         range_of_list (int, optional): Lists size can be modified like this. Defaults to 5.
     """
+    if secondary_keys is None:
+        secondary_keys = []
 
     def splitted_value_as_list(dataset: list[str]) -> list[Dict[str, list]]:
         """
@@ -40,8 +42,9 @@ def list_of_dict(secondary_keys: list[str] = [], range_of_list: int = 5) -> Clas
         Returns:
             Dict[str, list[str]]:  Daten werden in einem dict mit einer liste als value 
         """
-        if len(dataset) % int(range_of_list):
+        if len(dataset) % range_of_list:
             raise KeysDoNotMatchLength(range_of_list, "The specified length of the list does not match the dataset!")
+
         return [
             dict(zip(secondary_keys, dataset[count:count + range_of_list]))
             for count, data in enumerate(dataset, start=0) if count % range_of_list == 0
@@ -50,11 +53,14 @@ def list_of_dict(secondary_keys: list[str] = [], range_of_list: int = 5) -> Clas
     return splitted_value_as_list
 
 
-def dict_zip_data(dict_keys: list[str] = []) -> ClassifyerStrategy:
+def dict_zip_data(dict_keys: list[str] = None) -> ClassifyerStrategy:
     """
     Args:
         dict_keys (list[str]): List of key names!
     """
+
+    if dict_keys is None:
+        dict_keys = []
 
     def zip_data_with_keys(dataset: list[str]) -> Dict[str, str]:
         if len(dataset) != len(dict_keys):
@@ -107,4 +113,77 @@ class Classify:
         self.data = data
 
     def execute(self, used_strategy: ClassifyerStrategy) -> ClassifyerStrategy:
+        return used_strategy(self.data)
+
+
+CreateStringStrategy = Callable[[Union[List[str], Tuple[str]]], Dict]
+
+
+def create_string_from_dict_with_list_of_dicts(sep: Optional[str] = ";") -> CreateStringStrategy:
+
+    def create_from_dict(dataset: Dict[str, List[str]]) -> str:
+        """
+        create_string_from_List Create a new string based on the passed data.
+        Args:
+            dataset (dict[str, List[str]]): a defultdict must be passed otherwise unforeseen errors will occur.
+        Returns:
+            str: newly created string. Each word is separated with semicolons (csv)
+        """
+        List_of_elements: List[str] = []
+        for elements in dataset:
+            for keyword in elements:
+                List_of_elements += [str(elements[keyword])]
+        return f'{sep}'.join(List_of_elements)
+
+    return create_from_dict
+
+
+def create_string_from_dict_with_string(sep: Optional[str] = ";") -> CreateStringStrategy:
+
+    def create_from_str(dataset: Dict[str, str]) -> str:
+        """
+        create_from_str Create a new string based on the passed data.
+        Args:
+            dataset (dict[str, str]): a defultdict must be passed otherwise unforeseen errors will occur.
+        Returns:
+            str: newly created string. Each word is separated with semicolons (csv)
+        """
+
+        List_of_elements: List[str] = []
+        for key in dataset:
+            List_of_elements += [str(dataset[key])]
+        return f'{sep}'.join(List_of_elements)
+
+    return create_from_str
+
+
+def create_ascii_hex() -> CreateStringStrategy:
+
+    def ascii_hex_encode(dataset: Tuple[str]) -> str:
+        """
+        ascii_hex_encode Tuple is formatted back to ascii. After each character comes NULL. After each tuple element comes a return. The string is always ended with double NULL.
+        Args:
+            dataset (Tuple[str]): Caution the tuple should not be processed!
+        Returns:
+            str: A finished ascii block.
+        """
+        print(dataset)
+        if dataset:
+            final_row = ""
+            for elements in dataset:
+                final_row += '00'.join(hex_ascii.encode('utf-8').hex() for hex_ascii in elements)
+                final_row += '000D000A00'
+            final_row += "0000"
+            return final_row.upper()
+        return ""
+
+    return ascii_hex_encode
+
+
+class Create:
+
+    def __init__(self, data: Dict[str, str]) -> None:
+        self.data = data
+
+    def string(self, used_strategy: CreateStringStrategy) -> CreateStringStrategy:
         return used_strategy(self.data)
