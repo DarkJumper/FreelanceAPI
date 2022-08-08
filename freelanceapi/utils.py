@@ -167,7 +167,6 @@ def create_ascii_hex() -> CreateStringStrategy:
         Returns:
             str: A finished ascii block.
         """
-        print(dataset)
         if dataset:
             final_row = ""
             for elements in dataset:
@@ -185,5 +184,5 @@ class Create:
     def __init__(self, data: Dict[str, str]) -> None:
         self.data = data
 
-    def string(self, used_strategy: CreateStringStrategy) -> CreateStringStrategy:
+    def execute(self, used_strategy: CreateStringStrategy) -> CreateStringStrategy:
         return used_strategy(self.data)

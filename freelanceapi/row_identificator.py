@@ -23,15 +23,15 @@ class RowIdentification(BaseModel, ABC):
 
     def _get_string_from_dict_with_string(self, dict_of_strings: Dict) -> str:
         created_string = Create(dict_of_strings)
-        return created_string.string(create_string_from_dict_with_string(sep=";"))
+        return created_string.execute(create_string_from_dict_with_string(sep=";"))
 
     def _get_string_from_dict_with_dict(self, dict_with_list_of_dicts: Dict) -> str:
         created_string = Create(dict_with_list_of_dicts)
-        return created_string.string(create_string_from_dict_with_list_of_dicts(sep=";"))
+        return created_string.execute(create_string_from_dict_with_list_of_dicts(sep=";"))
 
     def _get_string_ascii_hex(self, ascii_list: List[str]) -> str:
         created_string = Create(ascii_list)
-        return created_string.string(create_ascii_hex())
+        return created_string.execute(create_ascii_hex())
 
     @abstractmethod
     def string(self) -> str:
@@ -63,7 +63,9 @@ class UidAcc(RowIdentification):
     PARA: list = None
 
     def string(self) -> str:
-        return self._get_string_from_dict_with_dict(self.dict())
+        uid_string = self._get_string_from_dict_with_dict(self.PARA)
+        normal_string = self._get_string_from_dict_with_string(self.dict(exclude={"PARA"}))
+        return f"{normal_string};{uid_string}"
 
 
 class ParaData(RowIdentification):
