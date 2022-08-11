@@ -1,8 +1,9 @@
 from abc import ABC, abstractmethod
 from typing import Callable, Dict, List, Optional, Tuple, Union
 
-from pydantic import BaseModel
+from pydantic import BaseModel, validator
 
+from ._validator import (AreaDefinition, LongText, MeasuringPoint, ModuleType, NextElementAvailable, ShortText)
 from .sections.area_dict import AreaDict
 from .sections.eam_dict import EamRecordDict
 from .sections.gwy_dict import GwyDict
@@ -40,14 +41,14 @@ class RowIdentification(BaseModel, ABC):
 
 # sourcery skip: remove-duplicate-dict-key
 class MsrRec(RowIdentification):
-    NA: int = None
-    MP: str = None
+    NA: NextElementAvailable
+    MP: MeasuringPoint
     LB: str = None
-    MT: str = None
-    ST: str = None
-    LT: str = None
+    MT: ModuleType
+    ST: ShortText
+    LT: LongText
     NI1: str = None
-    AD: int = None
+    AD: AreaDefinition
     SB: int = None
     NI2: str = None
     NI3: str = None
