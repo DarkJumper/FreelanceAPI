@@ -322,7 +322,7 @@ class Hw2Node(RowIdentification):
         self.NI11: str = kwargs["NI11"]
         self.NI12: str = kwargs["NI12"]
         self.NI13: str = kwargs["NI13"]
-        self.NI14: str = kargs["NI14"]
+        self.NI14: str = kwargs["NI14"]
         self.NI15: str = kwargs["NI15"]
         self.MP: str = kwargs["MP"]
         self.PS: str = kwargs["PS"]
