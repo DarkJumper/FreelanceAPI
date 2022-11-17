@@ -260,7 +260,7 @@ class GwyAccMsr(RowIdentification):
     def string(self) -> str:
         gwy_string = self._get_string_from_dict_with_dict(self.PARA)
         if self.PARA == []:
-            return f"{normal_string};{self.NA}"
+            return f"{self.ID};{self.NA}"
         return f"{self.ID};{self.MP};{self.LEN};{gwy_string};{self.NA}"
 
 
