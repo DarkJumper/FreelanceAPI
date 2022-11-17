@@ -12,7 +12,7 @@ class ParaRefDict(__SectionDict):
     Raises:
         KeyError: The String was not passed with the desired key.
     """
-    __keys: list[str] = ["ID", "VN", "DT", "NI1", "PI", "VC"]
+    __keys: list[str] = ["ID", "VAR", "DT", "NI1", "PI", "VC"]
 
     def merge_dict(self, splitted_data: list[str]) -> Dict:
         """

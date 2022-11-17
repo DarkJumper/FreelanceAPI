@@ -146,10 +146,12 @@ Meanings of the Dict Keys:
 - AC: Area Char
 - LA: Length of Area Text
 - AN: Area Name
+- PO: Processing order
+- VAR: Variable
 
 ## :warning: Developer Info
 
-All keys that contain a ? cannot be assigned to a function.
+All keys that contain a NI (NoIdear) cannot be assigned to a function.
 
 
 

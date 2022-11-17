@@ -114,7 +114,7 @@ def example_classifyed_msrref():
 
 @pytest.fixture
 def example_classifyed_pararef():
-    return {'ID': '[LAD:PARA_REF]', 'VN': '0.1', 'DT': 'REAL', 'NI1': '0', 'PI': '0', 'VC': '1'}
+    return {'ID': '[LAD:PARA_REF]', 'VAR': '0.1', 'DT': 'REAL', 'NI1': '0', 'PI': '0', 'VC': '1'}
 
 
 @pytest.fixture
@@ -126,7 +126,7 @@ def example_classifyed_pbvobjpath():
 def example_classifyed_gwy():
     return {
         'ID': '[GWY:ACCEAM]',
-        'MP': '54321_AUF',
+        'VN': '54321_AUF',
         'LEN': '1',
         'PARA': [{
             'GN': 'T164',
@@ -137,7 +137,7 @@ def example_classifyed_gwy():
                 'G1': '3',
                 'G2': '0'
                 }],
-        'END': '1'
+        'NA': '1'
         }
 
 

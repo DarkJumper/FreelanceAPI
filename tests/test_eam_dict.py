@@ -1,4 +1,5 @@
 import pytest
+
 from freelanceapi.row_identificator import EamRecord
 from freelanceapi.sections.eam_dict import EamRecordDict
 
