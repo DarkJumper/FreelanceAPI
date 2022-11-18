@@ -113,7 +113,7 @@ class ModuleType:
     def __init__(self, value: str):
         self.mt = value
         self.expected_type = [str]
-        self._module_typs = ["M_BIN", "M_ANA", "C_CU"]
+        #self._module_typs = ["M_BIN", "M_ANA", "C_CU", "IDF", "S800_AIW"]
 
     def __get__(self, instance, cls):
         return instance.__dict__[self.mt]
@@ -121,8 +121,8 @@ class ModuleType:
     def __set__(self, instance, value: str):
         if not isinstance(value, str):
             raise TypeError(f"{self.expected_type} value is expected")
-        elif value not in self._module_typs:
-            raise ValueError(f'Module type does not exist! Available modules -> {self._module_typs}')
+        # elif value not in self._module_typs:
+        #     raise ValueError(f'Module type does not exist! Available modules -> {self._module_typs}')
         else:
             instance.__dict__[self.mt] = value
 
